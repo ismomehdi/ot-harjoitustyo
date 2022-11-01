@@ -9,3 +9,5 @@
 [komentorivi.txt](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
 
 ---
+
+Tehtävä 17
