@@ -1,7 +1,8 @@
-# READ ME
+# Ohjelmistotekniikka, harjoitustyö
 
-This is a read me file.
+## Tehtävät
 
-**This text is bold.**
+### Viikko 1
 
-*This text is italicized.*
+[gitlog.txt](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/laskarit/viikko1/gitlog.txt)
+[komentorivi.txt](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
