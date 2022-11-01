@@ -1,0 +1,125 @@
+commit 9020c01a250fe4247c240091a777f2b000e30638
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Tue Nov 1 15:17:09 2022 +0200
+
+    changes
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 075c3d9254ea331f253c80f39d1f16853890968d
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Tue Nov 1 15:14:33 2022 +0200
+
+    add tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 6f8ef2eb86202940906a8fbd5b7ef7793793b68c
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Tue Nov 1 15:06:29 2022 +0200
+
+    Modifications
+
+ eka.txt    | 4 +++-
+ kolmas.txt | 4 +++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 52fa2b756f291324913f2c1d3c63c7daf3bf17d1
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Tue Nov 1 15:04:20 2022 +0200
+
+    rename tiedosto
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 43f47dd65c58f4f5bfd2458900bf9bc9033bbf3e
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Tue Nov 1 15:03:23 2022 +0200
+
+    remove toinen
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit de2471a9e19aca3bdd73147948be0a674935906a
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Tue Nov 1 14:59:50 2022 +0200
+
+    Modify tiedosto
+
+ tiedosto.txt | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 40c622f421fd625d41c69e3d8c7406347178e44a
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Tue Nov 1 14:59:00 2022 +0200
+
+    Copy text to tiedosto
+
+ tiedosto.txt | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit 0a6602a5fb757bbe4300dd9a381a87bcd92b2c08
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Mon Oct 31 17:39:23 2022 +0200
+
+    lisää stuff
+
+ stuff/jokin_tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7f2a29acf3918b7e77bbefcb8556662ece2b4bf6
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Mon Oct 31 17:38:04 2022 +0200
+
+    muutokset toinen ja kolmas
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 16cdced80fcbe17ae376f093e7286b8e347abf91
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Mon Oct 31 17:36:39 2022 +0200
+
+    lisää kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit cfca06183592144795aa0cbb5d39423515b137fe
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Mon Oct 31 17:34:00 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit c8a43bc906f98d1c9713453d5838841748114cb4
+Author: Ismo Mehdi 
+<84803085+ismomehdi@users.noreply.github.com>
+Date:   Mon Oct 31 17:32:00 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
