@@ -2,7 +2,7 @@
 
 ## Purpose
 
-A simple 2d jump 'n' run game. 
+A simple 2D jump 'n' run game. 
 
 ## Users
 
