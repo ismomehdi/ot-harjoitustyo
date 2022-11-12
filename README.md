@@ -8,6 +8,6 @@
 
 [komentorivi.txt](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
 
----
+### Viikko 2
 
-Tehtävä 17
+[Software Requirements Specification](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Software-Requirements-Specification.md)
