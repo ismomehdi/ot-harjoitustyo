@@ -11,3 +11,5 @@
 ### Viikko 2
 
 [Software Requirements Specification](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Software-Requirements-Specification.md)
+
+[Working Hours](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Working-Hours.md)
