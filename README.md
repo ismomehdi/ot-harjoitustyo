@@ -10,7 +10,7 @@
 
 ## Installation
 
-1. Install dependencies using the following command:
+Install dependencies using the following command:
 
 ```bash
 poetry install
