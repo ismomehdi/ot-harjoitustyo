@@ -20,7 +20,7 @@ poetry install
 
 ### Run
 
-Run the application using the following command:
+Run the application with the command:
 
 ```bash
 poetry run invoke start
@@ -28,7 +28,7 @@ poetry run invoke start
 
 ### Test
 
-Apply tests using the following command:
+Apply tests using the command:
 
 ```bash
 poetry run invoke test
@@ -36,7 +36,7 @@ poetry run invoke test
 
 ### Test coverage
 
-Generate a test coverage report using the following command:
+Generate a test coverage report with the command:
 
 ```bash
 poetry run invoke coverage-report
