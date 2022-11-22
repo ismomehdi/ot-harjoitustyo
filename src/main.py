@@ -2,16 +2,13 @@ import pygame, sys
 from assets.colors import bg_color
 from world import World
 from maps import *
+from display import display, display_surface
 
 # Pygame configuration
 pygame.init()
-screen_width = 1280
-screen_height = 720
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("The Adventures of Yakuzi")
 
 clock = pygame.time.Clock()
-world = World(level_1)
+world = World(level_1, display_surface)
 
 # Game loop
 while True:
@@ -20,8 +17,7 @@ while True:
             pygame.quit()
             sys.exit()
     
-    screen.fill(bg_color)
+    display.fill(bg_color)
     world.run_world()
-
     pygame.display.update()
     clock.tick(60)

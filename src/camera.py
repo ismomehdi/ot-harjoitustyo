@@ -1,9 +1,9 @@
 import pygame
 
 class Camera(pygame.sprite.Group):
-    def __init__(self):
+    def __init__(self, display_surface):
         super().__init__()
-        self.display_surface = pygame.display.get_surface()
+        self.display_surface = display_surface
 
         # This controls when the camera moves. For example
         # if the player's position is 150px from left, the
@@ -18,10 +18,10 @@ class Camera(pygame.sprite.Group):
 
         # This calculates the width and height of the camera area by
         # substracting the camera border values from the display size
-        camera_width = self.display_surface.get_size()[0] - (
+        camera_width = display_surface.get_size()[0] - (
             self.camera['left'] + self.camera['right'])
 
-        camera_height = self.display_surface.get_size()[1] - (
+        camera_height = display_surface.get_size()[1] - (
             self.camera['top'] + self.camera['bottom'])
 
         # These are the camera rectangle coordinates and size 

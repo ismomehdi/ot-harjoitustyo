@@ -1,16 +1,13 @@
 import pygame
-from maps import *
 from sprites.tile import Tile, tile_size
 from sprites.player import Player
 from camera import Camera
 
 class World:
-    def __init__(self, level_map):
-        self.display_surface = pygame.display.get_surface()
-
+    def __init__(self, level_map, display_surface):
         # Sprite configuration. Camera() is a custom sprite group
         # for controlling what's visible on the screen
-        self.visible_sprites = Camera()
+        self.visible_sprites = Camera(display_surface)
         self.active_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
 

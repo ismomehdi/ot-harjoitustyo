@@ -24,18 +24,18 @@ class Player(pygame.sprite.Sprite):
         self.collision_sprites = collision_sprites
 
     def input(self):
-        keys = pygame.key.get_pressed()
+        self.keys = pygame.key.get_pressed()
 
         # This controls the player left and right movement
-        if keys[pygame.K_RIGHT]:
+        if self.keys[pygame.K_RIGHT]:
             self.direction.x = 1
-        elif keys[pygame.K_LEFT]:
+        elif self.keys[pygame.K_LEFT]:
             self.direction.x = -1
         else:
             self.direction.x = 0
 
         # This controls the player jump
-        if keys[pygame.K_UP] and self.player_on_ground:
+        if self.keys[pygame.K_UP] and self.player_on_ground:
             self.direction.y = -self.jump_speed
     
     def horizontal_collisions(self):
