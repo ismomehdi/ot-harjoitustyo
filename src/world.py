@@ -5,7 +5,7 @@ from sprites.player import Player
 from camera import Camera
 
 class World:
-    def __init__(self):
+    def __init__(self, level_map):
         self.display_surface = pygame.display.get_surface()
 
         # Sprite configuration. Camera() is a custom sprite group
@@ -14,11 +14,11 @@ class World:
         self.active_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
 
-        self.setup_world()
+        self.setup_world(level_map)
 
     # Sets up the tiles and the initial position of the player
-    def setup_world(self):
-        for row_index, row in enumerate(level_1):
+    def setup_world(self, level_map):
+        for row_index, row in enumerate(level_map):
             for column_index, column in enumerate(row):
                 x = column_index * tile_size
                 y = row_index * tile_size
