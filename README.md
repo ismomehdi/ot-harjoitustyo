@@ -13,3 +13,7 @@
 [Software Requirements Specification](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Software-Requirements-Specification.md)
 
 [Working Hours](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Working-Hours.md)
+
+### Viikko 3
+
+[Changelog](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Changelog.md)
