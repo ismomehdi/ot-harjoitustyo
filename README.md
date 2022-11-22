@@ -8,6 +8,14 @@
 
 [Changelog](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Changelog.md)
 
+## Installation
+
+1. Install dependencies using the following command:
+
+```bash
+poetry install
+```
+
 ## Command Line
 
 ### Run
