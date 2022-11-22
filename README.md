@@ -1,19 +1,35 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-## Tehtävät
-
-### Viikko 1
-
-[gitlog.txt](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/laskarit/viikko1/komentorivi.txt)
-
-### Viikko 2
+## Documentation
 
 [Software Requirements Specification](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Software-Requirements-Specification.md)
 
 [Working Hours](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Working-Hours.md)
 
-### Viikko 3
-
 [Changelog](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Changelog.md)
+
+## Command Line
+
+### Run
+
+Run the application using the following command:
+
+```bash
+poetry run invoke start
+```
+
+### Test
+
+Apply tests using the following command:
+
+```bash
+poetry run invoke test
+```
+
+### Test coverage
+
+Generate a test coverage report using the following command:
+
+```bash
+poetry run invoke coverage-report
+```
