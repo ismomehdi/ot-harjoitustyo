@@ -9,3 +9,5 @@
 ## Week 4
 
 - Added ground and sky tile images
+- Created world 'edges', where the player can't move any further and the camera stops moving forward
+- Added pylint and modified the code to match with pylint recommendations
