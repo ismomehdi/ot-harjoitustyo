@@ -31,14 +31,18 @@ class Camera(pygame.sprite.Group):
     def camera_draw(self, player):
         # This changes the camera rectangle coordinates if the player gets
         # close to the camera 'borders'. In other words, this moves the camera.
-        if player.rect.left < self.camera_rect.left:
-            self.camera_rect.left = player.rect.left
         if player.rect.right > self.camera_rect.right:
             self.camera_rect.right = player.rect.right
         if player.rect.top < self.camera_rect.top:
             self.camera_rect.top = player.rect.top
         if player.rect.bottom > self.camera_rect.bottom:
             self.camera_rect.bottom = player.rect.bottom
+
+        # This ensures the camera moves left only if the player is not in
+        # the starting position (edge of the world)
+        if self.camera_rect.left > self.camera['left'] + 10:
+            if player.rect.left < self.camera_rect.left:
+                self.camera_rect.left = player.rect.left
 
         # This vector calculates the distance from the camera
         # borders to the surface borders

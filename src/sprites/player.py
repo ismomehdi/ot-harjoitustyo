@@ -1,14 +1,14 @@
 import pygame
 from assets.colors import player_color
-from sprites.ground_tile import tile_size
+from sprites.ground_tile import ground_tile_size
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites):
         super().__init__(groups)
 
         # Player configuration
-        player_size_x = tile_size / 2
-        player_size_y = tile_size
+        player_size_x = ground_tile_size / 2
+        player_size_y = ground_tile_size
 
         self.image = pygame.Surface((player_size_x, player_size_y))
         self.image.fill(player_color)

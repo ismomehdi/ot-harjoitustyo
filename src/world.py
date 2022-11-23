@@ -1,5 +1,5 @@
 import pygame
-from sprites.ground_tile import GroundTile, tile_size
+from sprites.ground_tile import GroundTile, ground_tile_size
 from sprites.sky_tile import SkyTile
 from sprites.player import Player
 from camera import Camera
@@ -18,8 +18,8 @@ class World:
     def setup_world(self, level_map):
         for row_index, row in enumerate(level_map):
             for column_index, column in enumerate(row):
-                x = column_index * tile_size
-                y = row_index * tile_size
+                x = column_index * ground_tile_size
+                y = row_index * ground_tile_size
 
                 if column == 'X':
                     GroundTile((x, y), [self.visible_sprites, self.collision_sprites])

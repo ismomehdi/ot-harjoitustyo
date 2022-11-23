@@ -1,6 +1,6 @@
 import unittest
 from world import World
-from sprites.tile import tile_size
+from sprites.ground_tile import ground_tile_size
 from display import display_surface
 
 level_map_0 = [
@@ -30,11 +30,11 @@ class TestWorld(unittest.TestCase):
     def test_can_move_on_ground(self):
         player = self.world.player
 
-        self.assert_coordinates_equal(player, 0, 10 * tile_size)
+        self.assert_coordinates_equal(player, 0, 10 * ground_tile_size)
 
-        player.rect.x += tile_size
-        self.assert_coordinates_equal(player, tile_size, 10 * tile_size)
+        player.rect.x += ground_tile_size
+        self.assert_coordinates_equal(player, ground_tile_size, 10 * ground_tile_size)
 
-        player.rect.y += tile_size
-        self.assert_coordinates_equal(player, tile_size, 11 * tile_size)
+        player.rect.y += ground_tile_size
+        self.assert_coordinates_equal(player, ground_tile_size, 11 * ground_tile_size)
 

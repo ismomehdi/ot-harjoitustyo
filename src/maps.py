@@ -1,3 +1,7 @@
+# P = Player
+# X = Ground tile
+# x = Sky tile
+
 level_1 = [
 '                                                        ',
 '                                                        ',
