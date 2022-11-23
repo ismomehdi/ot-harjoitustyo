@@ -1,5 +1,6 @@
 import pygame
-from sprites.tile import Tile, tile_size
+from sprites.ground_tile import GroundTile, tile_size
+from sprites.sky_tile import SkyTile
 from sprites.player import Player
 from camera import Camera
 
@@ -21,7 +22,9 @@ class World:
                 y = row_index * tile_size
 
                 if column == 'X':
-                    Tile((x, y), [self.visible_sprites, self.collision_sprites])
+                    GroundTile((x, y), [self.visible_sprites, self.collision_sprites])
+                if column == 'x':
+                    SkyTile((x, y), [self.visible_sprites, self.collision_sprites])
                 if column == 'P':
                     self.player = Player((x, y), 
                         [self.visible_sprites, self.active_sprites], 

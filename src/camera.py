@@ -11,9 +11,9 @@ class Camera(pygame.sprite.Group):
         # 'borders'
         self.camera = {
             'left': 150,
-            'right': 250,
+            'right': display_surface.get_size()[0] / 2,
             'top': 100,
-            'bottom': 150
+            'bottom': 50
         }
 
         # This calculates the width and height of the camera area by

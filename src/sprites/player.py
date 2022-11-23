@@ -1,6 +1,6 @@
 import pygame
 from assets.colors import player_color
-from sprites.tile import tile_size
+from sprites.ground_tile import tile_size
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites):
@@ -16,8 +16,8 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = pygame.math.Vector2()
         self.speed = 10
-        self.gravity = 1.1
-        self.jump_speed = 20
+        self.gravity = 0.7
+        self.jump_speed = 17
         self.player_on_ground = False
 
         # These are the sprites player can collide with
