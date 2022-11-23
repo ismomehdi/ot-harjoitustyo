@@ -2,6 +2,7 @@ import pygame
 from assets.colors import PLAYER_COLOR
 from maps import TILE_SIZE
 from level import level_rect
+from player_input import player_input
 
 
 class Player(pygame.sprite.Sprite):
@@ -17,28 +18,13 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=position)
 
         self.direction = pygame.math.Vector2()
-        self.speed = 10
+        self.speed = 8
         self.gravity = 0.7
         self.jump_speed = 17
         self.player_on_ground = False
 
         # These are the sprites player can collide with
         self.collision_sprites = collision_sprites
-
-    def input(self):
-        self.keys = pygame.key.get_pressed()
-
-        # This controls the player left and right movement
-        if self.keys[pygame.K_RIGHT]:
-            self.direction.x = 1
-        elif self.keys[pygame.K_LEFT]:
-            self.direction.x = -1
-        else:
-            self.direction.x = 0
-
-        # This controls the player jump
-        if self.keys[pygame.K_UP] and self.player_on_ground:
-            self.direction.y = -self.jump_speed
 
     def horizontal_collisions(self):
         for sprite in self.collision_sprites:
@@ -76,7 +62,11 @@ class Player(pygame.sprite.Sprite):
         self.rect.clamp_ip(level_rect)
 
     def update(self):
-        self.input()
+        player_input(
+            self.direction,
+            self.jump_speed,
+            self.player_on_ground)
+
         self.move_player()
         self.horizontal_collisions()
         self.apply_gravity()

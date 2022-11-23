@@ -5,6 +5,7 @@ class Camera(pygame.sprite.Group):
     def __init__(self, display_surface):
         super().__init__()
         self.display_surface = display_surface
+        self.offset = []
 
         # This controls when the camera moves. For example
         # if the player's position is 150px from left, the
@@ -41,7 +42,7 @@ class Camera(pygame.sprite.Group):
 
         # This ensures the camera moves left only if the player is not in
         # the starting position (edge of the world)
-        if self.camera_rect.left > self.camera['left'] + 10:
+        if self.camera_rect.left > self.camera['left']:
             if player.rect.left < self.camera_rect.left:
                 self.camera_rect.left = player.rect.left
 

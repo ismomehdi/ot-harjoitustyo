@@ -13,12 +13,13 @@ class World:
         self.visible_sprites = Camera(display_surface)
         self.active_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
+        self.level_map = level_map
 
-        self.setup_world(level_map)
+        self.setup_world()
 
     # Sets up the tiles and the initial position of the player
-    def setup_world(self, level_map):
-        for row_index, row in enumerate(level_map):
+    def setup_world(self):
+        for row_index, row in enumerate(self.level_map):
             for column_index, column in enumerate(row):
                 x_position = column_index * TILE_SIZE
                 y_position = row_index * TILE_SIZE
@@ -39,3 +40,4 @@ class World:
     def run_world(self):
         self.active_sprites.update()
         self.visible_sprites.camera_draw(self.player)
+
