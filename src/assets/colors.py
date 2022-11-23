@@ -1,3 +1,2 @@
-bg_color = '#E0E0E0'
+bg_color = '#E8F8FF'
 player_color = '#7C9091'
-tile_color = '#917B6C'
