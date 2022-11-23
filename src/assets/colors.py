@@ -1,2 +1,2 @@
-bg_color = '#E8F8FF'
-player_color = '#7C9091'
+BG_COLOR = '#E8F8FF'
+PLAYER_COLOR = '#7C9091'

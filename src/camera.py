@@ -1,5 +1,6 @@
 import pygame
 
+
 class Camera(pygame.sprite.Group):
     def __init__(self, display_surface):
         super().__init__()
@@ -24,7 +25,7 @@ class Camera(pygame.sprite.Group):
         camera_height = display_surface.get_size()[1] - (
             self.camera['top'] + self.camera['bottom'])
 
-        # These are the camera rectangle coordinates and size 
+        # These are the camera rectangle coordinates and size
         self.camera_rect = pygame.Rect(
             self.camera['left'], self.camera['top'], camera_width, camera_height)
 
@@ -47,7 +48,7 @@ class Camera(pygame.sprite.Group):
         # This vector calculates the distance from the camera
         # borders to the surface borders
         self.offset = pygame.math.Vector2(
-            self.camera_rect.left - self.camera['left'], 
+            self.camera_rect.left - self.camera['left'],
             self.camera_rect.top - self.camera['top'])
 
         # This draws the visible sprites on the surface so that their
@@ -55,4 +56,3 @@ class Camera(pygame.sprite.Group):
         for sprite in self.sprites():
             offset_position = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_position)
-

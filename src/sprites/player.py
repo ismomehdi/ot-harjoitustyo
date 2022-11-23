@@ -1,18 +1,20 @@
 import pygame
-from assets.colors import player_color
-from sprites.ground_tile import ground_tile_size
+from assets.colors import PLAYER_COLOR
+from maps import TILE_SIZE
+from level import level_rect
+
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, collision_sprites):
+    def __init__(self, position, groups, collision_sprites):
         super().__init__(groups)
 
         # Player configuration
-        player_size_x = ground_tile_size / 2
-        player_size_y = ground_tile_size
+        player_size_x = TILE_SIZE / 2
+        player_size_y = TILE_SIZE
 
         self.image = pygame.Surface((player_size_x, player_size_y))
-        self.image.fill(player_color)
-        self.rect = self.image.get_rect(topleft = pos)
+        self.image.fill(PLAYER_COLOR)
+        self.rect = self.image.get_rect(topleft=position)
 
         self.direction = pygame.math.Vector2()
         self.speed = 10
@@ -37,30 +39,30 @@ class Player(pygame.sprite.Sprite):
         # This controls the player jump
         if self.keys[pygame.K_UP] and self.player_on_ground:
             self.direction.y = -self.jump_speed
-    
+
     def horizontal_collisions(self):
         for sprite in self.collision_sprites:
             if sprite.rect.colliderect(self.rect):
-                # The player is moving left   
-                if self.direction.x < 0: 
+                # The player is moving left
+                if self.direction.x < 0:
                     self.rect.left = sprite.rect.right
                 # The player is moving right
-                if self.direction.x > 0: 
+                if self.direction.x > 0:
                     self.rect.right = sprite.rect.left
 
     def vertical_collisions(self):
         for sprite in self.collision_sprites:
             if sprite.rect.colliderect(self.rect):
-                # The player is moving up   
-                if self.direction.y < 0: 
+                # The player is moving up
+                if self.direction.y < 0:
                     self.rect.top = sprite.rect.bottom
                     self.direction.y = 0
                 # The player is moving down
-                if self.direction.y > 0: 
+                if self.direction.y > 0:
                     self.rect.bottom = sprite.rect.top
                     self.direction.y = 0
                     self.player_on_ground = True
-        
+
         # The player is not on ground
         if self.player_on_ground and self.direction.y != 0:
             self.player_on_ground = False
@@ -68,14 +70,14 @@ class Player(pygame.sprite.Sprite):
     def apply_gravity(self):
         self.direction.y += self.gravity
         self.rect.y += self.direction.y
-    
+
+    def move_player(self):
+        self.rect.x += self.direction.x * self.speed
+        self.rect.clamp_ip(level_rect)
+
     def update(self):
         self.input()
-        self.rect.x += self.direction.x * self.speed
+        self.move_player()
         self.horizontal_collisions()
         self.apply_gravity()
         self.vertical_collisions()
-        
-        
-
-        
