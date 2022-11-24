@@ -1,4 +1,5 @@
 import pygame
+from maps import TILE_SIZE
 
 
 class Camera(pygame.sprite.Group):
@@ -15,7 +16,7 @@ class Camera(pygame.sprite.Group):
             'left': 150,
             'right': display_surface.get_size()[0] / 2,
             'top': 100,
-            'bottom': 50
+            'bottom': TILE_SIZE
         }
 
         # This calculates the width and height of the camera area by
@@ -29,6 +30,8 @@ class Camera(pygame.sprite.Group):
         # These are the camera rectangle coordinates and size
         self.camera_rect = pygame.Rect(
             self.camera['left'], self.camera['top'], camera_width, camera_height)
+
+
 
     def camera_draw(self, player):
         # This changes the camera rectangle coordinates if the player gets
@@ -57,3 +60,5 @@ class Camera(pygame.sprite.Group):
         for sprite in self.sprites():
             offset_position = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_position)
+
+
