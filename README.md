@@ -8,6 +8,8 @@
 
 [Changelog](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/changelog.md)
 
+[Architecture](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/architecture.md)
+
 ## Installation
 
 Install dependencies using the following command:
