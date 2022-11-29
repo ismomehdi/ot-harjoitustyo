@@ -18,11 +18,9 @@ class Coin(pygame.sprite.Sprite):
         self.frame_index += self.animation_speed
         if self.frame_index > len(self.animation_frames):
             self.frame_index = 0
-        
+
         self.image = self.animation_frames[int(self.frame_index)]
         self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
 
     def update(self):
         self.animate()
-    
-

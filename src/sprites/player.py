@@ -1,5 +1,4 @@
 import pygame
-from assets.colors import PLAYER_COLOR
 from maps import TILE_SIZE
 from level import level_rect
 from player_input import player_input
@@ -14,7 +13,8 @@ class Player(pygame.sprite.Sprite):
         player_size_y = (TILE_SIZE * 2) * 0.9347826086956522
 
         self. image = pygame.image.load('./src/assets/player.png')
-        self.image = pygame.transform.scale(self.image, (player_size_x, player_size_y ))
+        self.image = pygame.transform.scale(
+            self.image, (player_size_x, player_size_y))
         self.rect = self.image.get_rect(topleft=position)
 
         self.direction = pygame.math.Vector2()
@@ -53,7 +53,7 @@ class Player(pygame.sprite.Sprite):
         # The player is not on ground
         if self.player_on_ground and self.direction.y != 0:
             self.player_on_ground = False
-    
+
     def coin_collisions(self):
         for sprite in self.coin_sprites:
             if sprite.rect.colliderect(self.rect):

@@ -9,7 +9,6 @@ from level import level
 pygame.init()
 clock = pygame.time.Clock()
 world = World(level, display_surface)
-dev_mode = True
 
 # Game loop
 while True:

@@ -1,11 +1,12 @@
-import pygame
 from os import walk
 from fnmatch import fnmatch
+import pygame
+
 
 def import_folder(path):
     image_list = []
 
-    for dirpath, dirname, filenames in walk(path):
+    for _, __, filenames in walk(path):
         for filename in sorted(filenames):
             full_path = path + '/' + filename
 

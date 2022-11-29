@@ -1,5 +1,6 @@
 import pygame
 
+
 def player_input(direction, jump_speed, player_on_ground):
     keys = pygame.key.get_pressed()
 
@@ -14,8 +15,3 @@ def player_input(direction, jump_speed, player_on_ground):
     # This controls the player jump
     if keys[pygame.K_UP] and player_on_ground:
         direction.y = -jump_speed
-    
-    
-    
-
-    

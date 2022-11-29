@@ -31,8 +31,6 @@ class Camera(pygame.sprite.Group):
         self.camera_rect = pygame.Rect(
             self.camera['left'], self.camera['top'], camera_width, camera_height)
 
-
-
     def camera_draw(self, player):
         # This changes the camera rectangle coordinates if the player gets
         # close to the camera 'borders'. In other words, this moves the camera.
@@ -60,5 +58,3 @@ class Camera(pygame.sprite.Group):
         for sprite in self.sprites():
             offset_position = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_position)
-
-
