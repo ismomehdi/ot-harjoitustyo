@@ -8,7 +8,7 @@
 
 [Changelog](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/changelog.md)
 
-[Architecture](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/architecture.md)
+[Application Architecture](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/architecture.md)
 
 ## Installation
 
