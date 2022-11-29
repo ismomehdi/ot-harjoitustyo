@@ -8,6 +8,7 @@
 | 23.11. | 4h | More coding. Adding and creating graphics.
 | 24.11. | 4h | More coding and graphics.
 | 26.11. | 6h | Still more coding and tweaking the graphics.
+| 29.11. | 4h | Did an application architecture diagram as well as some more work to match this week's requirements. 
 
-Total 25h 30min
+Total 29h 30min
 
