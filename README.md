@@ -2,11 +2,11 @@
 
 ## Documentation
 
-[Software Requirements Specification](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Software-Requirements-Specification.md)
+[Software Requirements Specification](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/software_requirements_specification.md)
 
-[Working Hours](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Working-Hours.md)
+[Working Hours](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/working_hours.md)
 
-[Changelog](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/Documentation/Changelog.md)
+[Changelog](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/changelog.md)
 
 ## Installation
 
