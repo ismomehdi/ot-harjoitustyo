@@ -10,9 +10,10 @@ A single user with an option to type in name for the High Scores list.
 
 ## Basic Features
 
-- [ ] The player is able to jump and run around the game platform and the camera follows the player.
+- [x] The player is able to jump and run around the game platform and the camera follows the player.
 - [ ] The game ends when the user reaches a goal.
-- [ ] There's enemies to avoid and objects to gather to gain points.
+- [ ] There's enemies to avoid.
+- [x] There's objects to gather to gain points.
 - [ ] Users can type in their name for the High Scores list when applicable.
 - [ ] There's a game menu.
 
