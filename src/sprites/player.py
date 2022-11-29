@@ -6,15 +6,15 @@ from player_input import player_input
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, position, groups, collision_sprites):
+    def __init__(self, position, groups, collision_sprites, coin_sprites):
         super().__init__(groups)
 
         # Player configuration
-        player_size_x = TILE_SIZE / 2
-        player_size_y = TILE_SIZE
+        player_size_x = (TILE_SIZE * 2)
+        player_size_y = (TILE_SIZE * 2) * 0.9347826086956522
 
-        self.image = pygame.Surface((player_size_x, player_size_y))
-        self.image.fill(PLAYER_COLOR)
+        self. image = pygame.image.load('./src/assets/player.png')
+        self.image = pygame.transform.scale(self.image, (player_size_x, player_size_y ))
         self.rect = self.image.get_rect(topleft=position)
 
         self.direction = pygame.math.Vector2()
@@ -25,6 +25,7 @@ class Player(pygame.sprite.Sprite):
 
         # These are the sprites player can collide with
         self.collision_sprites = collision_sprites
+        self.coin_sprites = coin_sprites
 
     def horizontal_collisions(self):
         for sprite in self.collision_sprites:
@@ -52,6 +53,11 @@ class Player(pygame.sprite.Sprite):
         # The player is not on ground
         if self.player_on_ground and self.direction.y != 0:
             self.player_on_ground = False
+    
+    def coin_collisions(self):
+        for sprite in self.coin_sprites:
+            if sprite.rect.colliderect(self.rect):
+                sprite.kill()
 
     def apply_gravity(self):
         self.direction.y += self.gravity
@@ -71,3 +77,4 @@ class Player(pygame.sprite.Sprite):
         self.horizontal_collisions()
         self.apply_gravity()
         self.vertical_collisions()
+        self.coin_collisions()
