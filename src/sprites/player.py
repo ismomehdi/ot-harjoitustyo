@@ -1,7 +1,7 @@
 import pygame
 from maps import TILE_SIZE
 from level import level_rect
-from player_input import player_input
+from services.player_input import player_input
 
 
 class Player(pygame.sprite.Sprite):
