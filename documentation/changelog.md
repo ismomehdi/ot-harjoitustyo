@@ -19,5 +19,6 @@
 
 - Added a levels folder and updated the code to import .txt file level maps.
 - Added player graphics.
+- Added coin position unit test.
 
 
