@@ -2,19 +2,18 @@ import pygame
 from maps import TILE_SIZE
 from level import level_rect
 from services.player_input import player_input
+from services.import_images import import_folder
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, position, groups, collision_sprites, coin_sprites):
         super().__init__(groups)
 
-        # Player configuration
-        player_size_x = (TILE_SIZE * 2)
-        player_size_y = (TILE_SIZE * 2) * 0.9347826086956522
-
-        self. image = pygame.image.load('./src/assets/player.png')
-        self.image = pygame.transform.scale(
-            self.image, (player_size_x, player_size_y))
+        self.import_player_assets()
+        self.frame_index = 0
+        self.animation_speed = 0.15
+        self.image = self.animations['idle'][self.frame_index]
+        self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
         self.rect = self.image.get_rect(topleft=position)
 
         self.direction = pygame.math.Vector2()
@@ -26,6 +25,24 @@ class Player(pygame.sprite.Sprite):
         # These are the sprites player can collide with
         self.collision_sprites = collision_sprites
         self.coin_sprites = coin_sprites
+    
+    def import_player_assets(self):
+        path = './src/assets/player_frames/'
+        self.animations = {'idle': [], 'run': [], 'jump': []}
+
+        for animation in self.animations.keys():
+            full_path = path + animation
+            self.animations[animation] = import_folder(full_path)
+
+    def animate(self):
+        animation_frames = self.animations['idle']
+
+        self.frame_index += self.animation_speed
+        if self.frame_index > len(animation_frames):
+            self.frame_index = 0
+        
+        self.image = animation_frames[int(self.frame_index)]
+        self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
 
     def horizontal_collisions(self):
         for sprite in self.collision_sprites:
@@ -78,3 +95,4 @@ class Player(pygame.sprite.Sprite):
         self.apply_gravity()
         self.vertical_collisions()
         self.coin_collisions()
+        self.animate()
