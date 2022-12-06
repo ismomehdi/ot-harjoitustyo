@@ -8,7 +8,9 @@
 | 23.11. | 4h | More coding. Adding and creating graphics.
 | 24.11. | 4h | More coding and graphics.
 | 26.11. | 6h | Still more coding and tweaking the graphics.
-| 29.11. | 4h | Did an application architecture diagram as well as some more work to match this week's requirements. 
+| 29.11. | 4h | Did an application architecture diagram as well as some more work to match this week's requirements.
+| 5.12.  | 4h | Spent some time looking for player graphics as well as fonts suitable for the game menus etc.
+| 6.12   | 7h | Added player graphics/animations. Added a new unit test. Added a function for storing level maps in .txt files.
 
-Total 29h 30min
+Total 40h 30min
 
