@@ -1,5 +1,4 @@
 import pygame
-from maps import TILE_SIZE
 from level import level_rect
 from services.player_input import player_input
 from services.import_images import import_folder
@@ -30,23 +29,22 @@ class Player(pygame.sprite.Sprite):
         # These are the sprites player can collide with
         self.collision_sprites = collision_sprites
         self.coin_sprites = coin_sprites
-    
+
     def import_player_assets(self):
         path = './src/assets/player_frames/'
         self.animations = {'idle': [], 'run': [], 'jump': [], 'fall': []}
 
-        for animation in self.animations.keys():
+        for animation in self.animations:
             full_path = path + animation
             self.animations[animation] = import_folder(full_path)
 
     def animate(self):
         animation_frames = self.animations[self.status]
-        print(self.status)
 
         self.frame_index += self.animation_speed
         if self.frame_index > len(animation_frames):
             self.frame_index = 0
-        
+
         image = animation_frames[int(self.frame_index)]
         if self.moving_forward:
             self.image = image
@@ -55,16 +53,21 @@ class Player(pygame.sprite.Sprite):
             self.image = flipped_image
 
     def get_player_status(self):
-        if self.direction.y < 0 :
+        if self.direction.y < 0:
             self.status = 'jump'
-        #elif self.direction.y > 1:
-        #    self.status = 'fall'
+            if self.direction.x == 1:
+                self.moving_forward = True
+            elif self.direction.x == -1:
+                self.moving_forward = False
+
         elif self.direction.x == 1 and self.player_on_ground:
             self.status = 'run'
             self.moving_forward = True
+
         elif self.direction.x == -1 and self.player_on_ground:
             self.status = 'run'
             self.moving_forward = False
+
         elif self.player_on_ground:
             self.status = 'idle'
 
