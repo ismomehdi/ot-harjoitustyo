@@ -16,7 +16,7 @@ A single user with an option to type in name for the High Scores list.
 - [x] There's objects to gather to gain points.
 - [ ] Users can type in their name for the High Scores list when applicable.
 - [ ] There's a game menu.
-- [ ] Platforms above the ground.
+- [x] Platforms above the ground.
 
 ## Ideas for Further Development
 
