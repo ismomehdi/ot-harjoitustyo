@@ -14,3 +14,10 @@
 - Added player placeholder image. This will probably be changed.
 - Added coins that dissappear when the player collides with them. 
 - Added an animation for the coin sprites.
+
+## Week 5
+
+- Added a levels folder and updated the code to import .txt file level maps.
+- Added player graphics.
+
+
