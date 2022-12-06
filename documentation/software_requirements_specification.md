@@ -16,12 +16,12 @@ A single user with an option to type in name for the High Scores list.
 - [x] There's objects to gather to gain points.
 - [ ] Users can type in their name for the High Scores list when applicable.
 - [ ] There's a game menu.
+- [x] Platforms above the ground.
 
 ## Ideas for Further Development
 
 - [ ] The player can destroy enemies by jumping on top of them.
 - [ ] The player can destroy enemies by shooting them.
-- [ ] Platforms above the ground.
 - [ ] The player can pause the game.
 - [ ] The player can save the game.
 - [ ] Graphics in the style of an 8bit video game.
