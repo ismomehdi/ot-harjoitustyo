@@ -9,18 +9,23 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, position, groups, collision_sprites, coin_sprites):
         super().__init__(groups)
 
+        # Player config
         self.import_player_assets()
         self.frame_index = 0
-        self.animation_speed = 0.15
+        self.animation_speed = 0.14
         self.image = self.animations['idle'][self.frame_index]
-        self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
         self.rect = self.image.get_rect(topleft=position)
 
+        # Player movement
         self.direction = pygame.math.Vector2()
         self.speed = 8
         self.gravity = 0.7
         self.jump_speed = 17
         self.player_on_ground = False
+
+        # Animation status
+        self.status = 'idle'
+        self.going_forward = True
 
         # These are the sprites player can collide with
         self.collision_sprites = collision_sprites
@@ -28,21 +33,39 @@ class Player(pygame.sprite.Sprite):
     
     def import_player_assets(self):
         path = './src/assets/player_frames/'
-        self.animations = {'idle': [], 'run': [], 'jump': []}
+        self.animations = {'idle': [], 'run': [], 'jump': [], 'fall': []}
 
         for animation in self.animations.keys():
             full_path = path + animation
             self.animations[animation] = import_folder(full_path)
 
     def animate(self):
-        animation_frames = self.animations['idle']
+        animation_frames = self.animations[self.status]
 
         self.frame_index += self.animation_speed
         if self.frame_index > len(animation_frames):
             self.frame_index = 0
         
-        self.image = animation_frames[int(self.frame_index)]
-        self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
+        image = animation_frames[int(self.frame_index)]
+        if self.going_forward:
+            self.image = image
+        else:
+            flipped_image = pygame.transform.flip(image, True, False)
+            self.image = flipped_image
+
+    def get_player_status(self):
+        #if self.direction.y < 0:
+        #    self.status = 'jump'
+        #elif self.direction.y > 1:
+        #    self.status = 'fall'
+        if self.direction.x == 1:
+            self.status = 'run'
+            self.going_forward = True
+        elif self.direction.x == -1:
+            self.status = 'run'
+            self.going_forward = False
+        else:
+            self.status = 'idle'
 
     def horizontal_collisions(self):
         for sprite in self.collision_sprites:
@@ -95,4 +118,5 @@ class Player(pygame.sprite.Sprite):
         self.apply_gravity()
         self.vertical_collisions()
         self.coin_collisions()
+        self.get_player_status()
         self.animate()
