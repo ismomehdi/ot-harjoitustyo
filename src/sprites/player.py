@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
 
         # Animation status
         self.status = 'idle'
-        self.going_forward = True
+        self.moving_forward = True
 
         # These are the sprites player can collide with
         self.collision_sprites = collision_sprites
@@ -41,30 +41,31 @@ class Player(pygame.sprite.Sprite):
 
     def animate(self):
         animation_frames = self.animations[self.status]
+        print(self.status)
 
         self.frame_index += self.animation_speed
         if self.frame_index > len(animation_frames):
             self.frame_index = 0
         
         image = animation_frames[int(self.frame_index)]
-        if self.going_forward:
+        if self.moving_forward:
             self.image = image
         else:
             flipped_image = pygame.transform.flip(image, True, False)
             self.image = flipped_image
 
     def get_player_status(self):
-        #if self.direction.y < 0:
-        #    self.status = 'jump'
+        if self.direction.y < 0 :
+            self.status = 'jump'
         #elif self.direction.y > 1:
         #    self.status = 'fall'
-        if self.direction.x == 1:
+        elif self.direction.x == 1 and self.player_on_ground:
             self.status = 'run'
-            self.going_forward = True
-        elif self.direction.x == -1:
+            self.moving_forward = True
+        elif self.direction.x == -1 and self.player_on_ground:
             self.status = 'run'
-            self.going_forward = False
-        else:
+            self.moving_forward = False
+        elif self.player_on_ground:
             self.status = 'idle'
 
     def horizontal_collisions(self):
