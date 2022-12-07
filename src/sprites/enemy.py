@@ -5,7 +5,7 @@ from collisions.main_collisions import MainCollisions
 
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, position, groups, collision_sprites):
+    def __init__(self, position, groups, collision_sprites, player_sprite):
         super().__init__(groups)
         self.image = pygame.image.load('./src/assets/sky_tile.png')
         self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
@@ -15,13 +15,22 @@ class Enemy(pygame.sprite.Sprite):
         # Enemy movement
         self.direction = pygame.math.Vector2()
         self.speed = 2
+        self.chase_speed = 200
 
         self.collisions = MainCollisions(
             collision_sprites, self.direction, self.rect)
 
+        # Player sprite group for tracking the player
+        self.player = player_sprite
+
+
     def move_enemy(self):
-        # self.rect.x += self.direction.x * self.speed
-        self.rect.x += self.speed
+        if self.player.sprite.rect.x - self.chase_speed > self.rect.x:
+            self.direction.x = 1
+        elif self.player.sprite.rect.x + self.chase_speed < self.rect.x:
+            self.direction.x = -1
+
+        self.rect.x += self.direction.x * self.speed
         self.rect.clamp_ip(level_rect)
 
     def update(self):
