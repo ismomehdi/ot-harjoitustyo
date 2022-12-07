@@ -28,7 +28,7 @@ class TestWorld(unittest.TestCase):
         self.assertEqual(sprite.rect.x, x)
 
     def test_coin_position(self):
-        coins = self.world.coin_sprite_group
+        coins = self.world.coin_sprites
 
         for coin in coins:
             self.assert_coordinates_equal(coin, TILE_SIZE)
