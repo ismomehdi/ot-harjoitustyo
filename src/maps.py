@@ -15,7 +15,7 @@ maps = {}
 # Import .txt files from the levels folder to the maps dictionary.
 for _, __, filenames in walk(PATH):
     for filename in sorted(filenames):
-        with open(PATH + filename, 'r', encoding="utf-8") as level_file:
+        with open(PATH + filename, 'r', encoding="utf-8", errors='ignore') as level_file:
             data = level_file.read().replace("'", "").split("\n")
             filename = filename.strip('.txt')
             maps[filename] = data
