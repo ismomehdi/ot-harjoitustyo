@@ -16,6 +16,7 @@ class World:
         self.active_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
         self.coin_sprites = pygame.sprite.Group()
+        self.player_sprite = pygame.sprite.GroupSingle()
         self.level_map = level_map
 
         self.setup_world()
@@ -36,7 +37,8 @@ class World:
                 if column == 'P':
                     self.player = Player((x_position, y_position),
                                          [self.visible_sprites,
-                                             self.active_sprites],
+                                             self.active_sprites,
+                                          self.player_sprite],
                                          self.collision_sprites,
                                          self.coin_sprites)
                 if column == 'o':
@@ -45,7 +47,7 @@ class World:
                 if column == 'e':
                     Enemy((x_position, y_position),
                           [self.visible_sprites, self.active_sprites],
-                          self.collision_sprites)
+                          self.collision_sprites, self.player_sprite)
 
     # Draws the world
     def run_world(self):
