@@ -2,6 +2,8 @@ import pygame
 from level import level_rect
 from services.player_input import player_input
 from services.import_images import import_folder
+from collisions.main_collisions import MainCollisions
+from collisions.coin_collisions import apply_coin_collisions
 
 
 class Player(pygame.sprite.Sprite):
@@ -20,14 +22,13 @@ class Player(pygame.sprite.Sprite):
         self.speed = 8
         self.gravity = 0.7
         self.jump_speed = 17
-        self.player_on_ground = False
 
-        # Animation status
+        # Player status
         self.status = 'idle'
         self.moving_forward = True
 
-        # These are the sprites player can collide with
-        self.collision_sprites = collision_sprites
+        # For collisions
+        self.collisions = MainCollisions(collision_sprites, self.direction, self.rect)
         self.coin_sprites = coin_sprites
 
     def import_player_assets(self):
@@ -60,48 +61,16 @@ class Player(pygame.sprite.Sprite):
             elif self.direction.x == -1:
                 self.moving_forward = False
 
-        elif self.direction.x == 1 and self.player_on_ground:
+        elif self.direction.x == 1 and self.collisions.ground():
             self.status = 'run'
             self.moving_forward = True
 
-        elif self.direction.x == -1 and self.player_on_ground:
+        elif self.direction.x == -1 and self.collisions.ground():
             self.status = 'run'
             self.moving_forward = False
 
-        elif self.player_on_ground:
+        elif self.collisions.ground():
             self.status = 'idle'
-
-    def horizontal_collisions(self):
-        for sprite in self.collision_sprites:
-            if sprite.rect.colliderect(self.rect):
-                # The player is moving left
-                if self.direction.x < 0:
-                    self.rect.left = sprite.rect.right
-                # The player is moving right
-                if self.direction.x > 0:
-                    self.rect.right = sprite.rect.left
-
-    def vertical_collisions(self):
-        for sprite in self.collision_sprites:
-            if sprite.rect.colliderect(self.rect):
-                # The player is moving up
-                if self.direction.y < 0:
-                    self.rect.top = sprite.rect.bottom
-                    self.direction.y = 0
-                # The player is moving down
-                if self.direction.y > 0:
-                    self.rect.bottom = sprite.rect.top
-                    self.direction.y = 0
-                    self.player_on_ground = True
-
-        # The player is not on ground
-        if self.player_on_ground and self.direction.y != 0:
-            self.player_on_ground = False
-
-    def coin_collisions(self):
-        for sprite in self.coin_sprites:
-            if sprite.rect.colliderect(self.rect):
-                sprite.kill()
 
     def apply_gravity(self):
         self.direction.y += self.gravity
@@ -115,12 +84,12 @@ class Player(pygame.sprite.Sprite):
         player_input(
             self.direction,
             self.jump_speed,
-            self.player_on_ground)
+            self.collisions.ground())
 
         self.move_player()
-        self.horizontal_collisions()
+        self.collisions.apply_horizontal_collisions()
         self.apply_gravity()
-        self.vertical_collisions()
-        self.coin_collisions()
+        self.collisions.apply_vertical_collisions()
+        apply_coin_collisions(self.rect, self.coin_sprites)
         self.get_player_status()
         self.animate()

@@ -1,4 +1,4 @@
-class mainCollisions():
+class MainCollisions():
     def __init__(self, collision_sprites, direction, rect):
         self.collision_sprites = collision_sprites
         self.direction = direction
@@ -31,6 +31,6 @@ class mainCollisions():
         # The character is not on ground
         if self.on_ground and self.direction.y != 0:
             self.on_ground = False
-    
+
     def ground(self):
         return self.on_ground

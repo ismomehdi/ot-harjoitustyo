@@ -3,6 +3,7 @@ from sprites.ground_tile import GroundTile
 from sprites.sky_tile import SkyTile
 from sprites.player import Player
 from sprites.coin import Coin
+from sprites.enemy import Enemy
 from camera import Camera
 from maps import TILE_SIZE
 
@@ -41,6 +42,10 @@ class World:
                 if column == 'o':
                     Coin((x_position, y_position),
                          [self.visible_sprites, self.active_sprites, self.coin_sprites])
+                if column == 'e':
+                    Enemy((x_position, y_position),
+                          [self.visible_sprites, self.active_sprites],
+                          self.collision_sprites)
 
     # Draws the world
     def run_world(self):
