@@ -1,5 +1,5 @@
 import pygame
-from maps import TILE_SIZE
+from config.sprite_sizes import TILE_SIZE
 from services.import_images import import_folder
 
 

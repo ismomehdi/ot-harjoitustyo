@@ -2,7 +2,7 @@ import sys
 import pygame
 from assets.colors import BG_COLOR
 from world import World
-from display import display, display_surface
+from config.display import display, display_surface
 from level import level_map
 
 # Pygame configuration

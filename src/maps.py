@@ -8,7 +8,6 @@ from os import walk
 # x = Sky tile
 # o = Coin
 
-TILE_SIZE = 48
 PATH = 'src/levels/'
 maps = {}
 

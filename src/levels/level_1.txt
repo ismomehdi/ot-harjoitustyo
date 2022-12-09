@@ -23,5 +23,5 @@
 '                                            xxx            '
 '                                      xxx                  '
 '                                xxx                        '
-'   e      P     ooooooooooooo                              '
+'    e     P     ooooooooooooo                              '
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'

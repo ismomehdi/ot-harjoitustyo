@@ -1,5 +1,5 @@
 import pygame
-from maps import TILE_SIZE
+from config.sprite_sizes import TILE_SIZE
 
 
 class GroundTile(pygame.sprite.Sprite):

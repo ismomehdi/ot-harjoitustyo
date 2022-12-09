@@ -1,7 +1,7 @@
 import unittest
 from world import World
-from maps import TILE_SIZE
-from display import display_surface
+from config.sprite_sizes import TILE_SIZE
+from config.display import display_surface
 
 level_map_0 = [
     '                                                        ',

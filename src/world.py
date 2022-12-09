@@ -5,7 +5,7 @@ from sprites.player import Player
 from sprites.coin import Coin
 from sprites.enemy import Enemy
 from camera import Camera
-from maps import TILE_SIZE
+from config.sprite_sizes import TILE_SIZE, ENEMY_SIZE_OFFSET
 
 
 class World:
@@ -45,7 +45,7 @@ class World:
                     Coin((x_position, y_position),
                          [self.visible_sprites, self.active_sprites, self.coin_sprites])
                 if column == 'e':
-                    Enemy((x_position, y_position),
+                    Enemy((x_position, y_position - ENEMY_SIZE_OFFSET),
                           [self.visible_sprites, self.active_sprites],
                           self.collision_sprites, self.player_sprite)
 
