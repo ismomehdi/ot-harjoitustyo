@@ -10,15 +10,17 @@ from config.sprite_sizes import TILE_SIZE, ENEMY_SIZE_OFFSET
 
 class World:
     def __init__(self, level_map, display_surface):
-        # Sprite configuration. Camera() is a custom sprite group
-        # for controlling what's visible on the screen
-        self.visible_sprites = Camera(display_surface)
+        # Sprite configuration
         self.active_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
         self.coin_sprites = pygame.sprite.Group()
+        self.enemy_sprites = pygame.sprite.Group()
         self.player_sprite = pygame.sprite.GroupSingle()
-        self.level_map = level_map
 
+        # Camera is used to render the visible sprites
+        self.visible_sprites = Camera(display_surface)
+
+        self.level_map = level_map
         self.setup_world()
 
     # Sets up the tiles and the initial position of the player
@@ -46,7 +48,7 @@ class World:
                          [self.visible_sprites, self.active_sprites, self.coin_sprites])
                 if column == 'e':
                     Enemy((x_position, y_position - ENEMY_SIZE_OFFSET),
-                          [self.visible_sprites, self.active_sprites],
+                          [self.visible_sprites, self.active_sprites, self.enemy_sprites],
                           self.collision_sprites, self.player_sprite)
 
     # Draws the world

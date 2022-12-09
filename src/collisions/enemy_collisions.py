@@ -1,0 +1,2 @@
+class EnemyCollisions:
+    pass

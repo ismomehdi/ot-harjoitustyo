@@ -1,11 +1,10 @@
-class MainCollisions():
+class MainCollisions:
     def __init__(self, collision_sprites, direction, rect, gravity):
         self.collision_sprites = collision_sprites
         self.direction = direction
         self.rect = rect
         self.on_ground = False
         self.gravity = gravity
-        
 
     def apply_horizontal_collisions(self):
         for sprite in self.collision_sprites:
