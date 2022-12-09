@@ -3,6 +3,8 @@ from config.sprite_sizes import TILE_SIZE
 from level import level_rect
 from collisions.main_collisions import MainCollisions
 from services.import_images import import_folder
+from services.move_character import move_enemy
+
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, position, groups, collision_sprites, player_sprite):
@@ -32,29 +34,10 @@ class Enemy(pygame.sprite.Sprite):
 
         # For collisions
         self.collisions = MainCollisions(
-            collision_sprites, self.direction, self.rect)
+            collision_sprites, self.direction, self.rect, self.gravity)
 
         # Player sprite group for tracking the player
         self.player = player_sprite
-
-
-    def move_enemy(self):
-        # This defines the area the enemy can move in
-        if self.rect.x < self.starting_pos_x:
-            self.direction.x *= -1  
-        elif self.rect.x > self.starting_pos_x + self.area_size:
-            self.direction.x *= -1
-
-        # This makes the enemy chase the player if they are in the enemy's area
-        if self.starting_pos_x < self.player.sprite.rect.x \
-            < self.starting_pos_x + self.area_size:
-                if self.player.sprite.rect.x - self.chase_speed > self.rect.x:
-                    self.direction.x = 1
-                if self.player.sprite.rect.x + self.chase_speed < self.rect.x:
-                    self.direction.x = -1
-    
-        self.rect.x += self.direction.x * self.speed
-        self.rect.clamp_ip(level_rect)
 
     def import_enemy_assets(self):
         path = './src/assets/enemy_frames/'
@@ -97,14 +80,13 @@ class Enemy(pygame.sprite.Sprite):
         elif self.collisions.ground():
             self.status = 'idle'
 
-    def apply_gravity(self):
-        self.direction.y += self.gravity
-        self.rect.y += self.direction.y
-
     def update(self):
-        self.move_enemy()
+        move_enemy(self.rect, self.direction, self.speed,
+                   self.starting_pos_x, self.area_size,
+                   self.chase_speed, self.player)
+
         self.collisions.apply_horizontal_collisions()
-        self.apply_gravity()
+        self.collisions.apply_gravity()
         self.collisions.apply_vertical_collisions()
         self.get_enemy_status()
         self.animate()

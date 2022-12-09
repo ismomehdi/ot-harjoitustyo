@@ -1,7 +1,7 @@
 import pygame
-from level import level_rect
 from services.player_input import player_input
 from services.import_images import import_folder
+from services.move_character import move_player
 from collisions.main_collisions import MainCollisions
 from collisions.coin_collisions import apply_coin_collisions
 
@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
         self.moving_forward = True
 
         # For collisions
-        self.collisions = MainCollisions(collision_sprites, self.direction, self.rect)
+        self.collisions = MainCollisions(collision_sprites, self.direction, self.rect, self.gravity)
         self.coin_sprites = coin_sprites
 
     def import_player_assets(self):
@@ -76,19 +76,15 @@ class Player(pygame.sprite.Sprite):
         self.direction.y += self.gravity
         self.rect.y += self.direction.y
 
-    def move_player(self):
-        self.rect.x += self.direction.x * self.speed
-        self.rect.clamp_ip(level_rect)
-
     def update(self):
         player_input(
             self.direction,
             self.jump_speed,
             self.collisions.ground())
 
-        self.move_player()
+        move_player(self.rect, self.direction, self.speed)
         self.collisions.apply_horizontal_collisions()
-        self.apply_gravity()
+        self.collisions.apply_gravity()
         self.collisions.apply_vertical_collisions()
         apply_coin_collisions(self.rect, self.coin_sprites)
         self.get_player_status()

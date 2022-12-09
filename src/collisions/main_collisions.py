@@ -1,9 +1,11 @@
 class MainCollisions():
-    def __init__(self, collision_sprites, direction, rect):
+    def __init__(self, collision_sprites, direction, rect, gravity):
         self.collision_sprites = collision_sprites
         self.direction = direction
         self.rect = rect
         self.on_ground = False
+        self.gravity = gravity
+        
 
     def apply_horizontal_collisions(self):
         for sprite in self.collision_sprites:
@@ -34,3 +36,7 @@ class MainCollisions():
 
     def ground(self):
         return self.on_ground
+
+    def apply_gravity(self):
+        self.direction.y += self.gravity
+        self.rect.y += self.direction.y
