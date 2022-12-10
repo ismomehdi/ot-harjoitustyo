@@ -10,7 +10,7 @@ class Enemy(pygame.sprite.Sprite):
         super().__init__(groups)
 
         # The AnimatedCharacter class is used to animate the enemy
-        self.enemy = AnimateCharacter('./src/assets/enemy_frames/')
+        self.enemy = AnimateCharacter('./src/assets/images/enemy/')
         self.image = self.enemy.image
         self.rect = self.image.get_rect(topleft=position)
 

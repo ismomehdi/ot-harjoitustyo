@@ -8,7 +8,7 @@ class Coin(pygame.sprite.Sprite):
         super().__init__(groups)
         self.frame_index = 0
         self.animation_speed = 0.15
-        self.animation_frames = import_folder('./src/assets/coin_frames')
+        self.animation_frames = import_folder('./src/assets/images/coin/')
         self.image = self.animation_frames[self.frame_index]
         self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
         self.rect = self.image.get_rect(topleft=position)

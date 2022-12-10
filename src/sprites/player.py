@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
 
         super().__init__(groups)
 
-        self.player = AnimateCharacter('./src/assets/player_frames/')
+        self.player = AnimateCharacter('./src/assets/images/player/')
         self.image = self.player.image
         self.rect = self.image.get_rect(topleft=position)
 
@@ -37,6 +37,7 @@ class Player(pygame.sprite.Sprite):
         self.invincible = False
         self.hurt_time = 0
         self.grace_period = 500
+        self.dead = False
 
     def decrease_health(self):
         """Decreases the player health by 1.
@@ -48,8 +49,8 @@ class Player(pygame.sprite.Sprite):
         (unless the player is 'invincible').
         """
         if self.player_health == 1 and not self.invincible:
-            print("Game Over")
-
+            self.dead = True
+            self.rect = self.image.get_rect(bottomleft = self.rect.bottomleft)
         elif not self.invincible:
             self.player_health -= 1
             self.invincible = True
@@ -70,7 +71,9 @@ class Player(pygame.sprite.Sprite):
             self.jump_speed,
             self.collisions.ground())
 
-        move_player(self.rect, self.direction, self.speed)
+        if not self.dead:
+            move_player(self.rect, self.direction, self.speed)
+            
         self.collisions.apply_horizontal_collisions()
         self.collisions.apply_gravity()
         self.collisions.apply_vertical_collisions()
@@ -81,4 +84,4 @@ class Player(pygame.sprite.Sprite):
         self.hurt_timer()
 
         self.image = self.player.animate(
-            self.direction, self.collisions, self.invincible)
+            self.direction, self.collisions, self.invincible, self.dead)
