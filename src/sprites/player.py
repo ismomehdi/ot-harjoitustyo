@@ -2,12 +2,11 @@ import pygame
 from services.player_input import player_input
 from services.move_character import move_player
 from services.animate_character import AnimateCharacter
-from collisions.main_collisions import MainCollisions
-from collisions.coin_collisions import apply_coin_collisions
+from services.collisions import Collisions
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, position, groups, collision_sprites, coin_sprites):
+    def __init__(self, position, groups, collision_sprites, coin_sprites, enemy_sprites):
         super().__init__(groups)
 
         # The AnimatedCharacter class is used to animate the player
@@ -22,8 +21,9 @@ class Player(pygame.sprite.Sprite):
         self.jump_speed = 17
 
         # For collisions
-        self.collisions = MainCollisions(collision_sprites, self.direction, self.rect, self.gravity)
+        self.collisions = Collisions(collision_sprites, self.direction, self.rect, self.gravity)
         self.coin_sprites = coin_sprites
+        self.enemy_sprites = enemy_sprites
 
     def update(self):
         player_input(
@@ -35,6 +35,7 @@ class Player(pygame.sprite.Sprite):
         self.collisions.apply_horizontal_collisions()
         self.collisions.apply_gravity()
         self.collisions.apply_vertical_collisions()
-        apply_coin_collisions(self.rect, self.coin_sprites)
+        self.collisions.apply_coin_collisions(self.coin_sprites)
+        self.collisions.apply_enemy_collisions(self.enemy_sprites, self.direction)
         
         self.image = self.player.animate(self.direction, self.collisions)

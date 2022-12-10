@@ -42,7 +42,8 @@ class World:
                                              self.active_sprites,
                                           self.player_sprite],
                                          self.collision_sprites,
-                                         self.coin_sprites)
+                                         self.coin_sprites,
+                                         self.enemy_sprites)
                 if column == 'o':
                     Coin((x_position, y_position),
                          [self.visible_sprites, self.active_sprites, self.coin_sprites])

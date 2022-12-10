@@ -1,6 +1,6 @@
 import pygame
 from config.sprite_sizes import TILE_SIZE
-from collisions.main_collisions import MainCollisions
+from services.collisions import Collisions
 from services.animate_character import AnimateCharacter
 from services.move_character import move_enemy
 
@@ -26,7 +26,7 @@ class Enemy(pygame.sprite.Sprite):
         self.gravity = 0.7
 
         # For collisions
-        self.collisions = MainCollisions(
+        self.collisions = Collisions(
             collision_sprites, self.direction, self.rect, self.gravity)
 
         # Player sprite group for tracking the player
