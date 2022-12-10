@@ -1,4 +1,4 @@
-class MainCollisions:
+class Collisions:
     def __init__(self, collision_sprites, direction, rect, gravity):
         self.collision_sprites = collision_sprites
         self.direction = direction
@@ -39,3 +39,23 @@ class MainCollisions:
     def apply_gravity(self):
         self.direction.y += self.gravity
         self.rect.y += self.direction.y
+
+    # This method is used for player's collisions with coins
+    def apply_coin_collisions(self, coin_sprites):
+        for sprite in coin_sprites:
+            if sprite.rect.colliderect(self.rect):
+                sprite.kill()
+
+    # This method is used for player's collisions with enemies
+    def apply_enemy_collisions(self, enemy_sprites, direction):
+        for enemy in enemy_sprites:
+            if enemy.rect.colliderect(self.rect):
+
+                # The enemy is destroyed if the player is moving down
+                if enemy.rect.top < self.rect.bottom < enemy.rect.centery \
+                    and self.direction.y >= 0:
+                        enemy.kill()
+                        direction.y = -14
+                
+                else:
+                    print("HURT")
