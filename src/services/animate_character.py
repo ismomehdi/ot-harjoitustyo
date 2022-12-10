@@ -9,38 +9,37 @@ class AnimateCharacter:
         self.status = 'idle'
 
         self.frame_index = 0
-        self.animation_speed = 0.14
+        self.animation_speed = 0.19
 
         self.image = self.animations['idle'][self.frame_index]
 
     def import_assets(self, path):
-        self.animations = {'idle': [], 'run': [], 'jump': [], 'fall': []}
+        self.animations = {'idle': [], 'run': [], 'jump': [], 'fall': [], 'hurt': []}
 
         for animation in self.animations:
             full_path = path + animation
             self.animations[animation] = import_folder(full_path)
 
-    def get_status(self, direction, collisions):
-        if direction.y < 0:
-            self.status = 'jump'
-            if direction.x == 1:
-                self.moving_forward = True
-            elif direction.x == -1:
-                self.moving_forward = False
+    def get_status(self, direction, collisions, hurt):
 
-        elif direction.x == 1 and collisions.ground():
-            self.status = 'run'
+        # Check which way the player is moving
+        if direction.x == 1:
             self.moving_forward = True
-
-        elif direction.x == -1 and collisions.ground():
-            self.status = 'run'
+        elif direction.x == -1:
             self.moving_forward = False
 
+        # Determine the player's status
+        if hurt:
+            self.status = 'hurt'
+        elif direction.y < 0:
+            self.status = 'jump'
+        elif direction.x != 0 and collisions.ground():
+            self.status = 'run'
         elif collisions.ground():
             self.status = 'idle'
 
-    def animate(self, direction, collisions):
-        self.get_status(direction, collisions)
+    def animate(self, direction, collisions, hurt=False):
+        self.get_status(direction, collisions, hurt)
         animation_frames = self.animations[self.status]
 
         self.frame_index += self.animation_speed

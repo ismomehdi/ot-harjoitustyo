@@ -25,6 +25,26 @@ class Player(pygame.sprite.Sprite):
         self.coin_sprites = coin_sprites
         self.enemy_sprites = enemy_sprites
 
+        # Player health
+        self.player_health = 5
+        self.hurt = False
+        self.hurt_time = 0
+        self.hurt_delay = 500
+
+    def decrease_health(self):
+        if self.player_health == 1 and not self.hurt:
+            print("Game Over")
+
+        elif not self.hurt:
+            self.player_health -= 1
+            self.hurt = True
+            self.hurt_time = pygame.time.get_ticks()
+    
+    def hurt_timer(self):
+        if self.hurt:
+            if pygame.time.get_ticks() - self.hurt_time >= self.hurt_delay:
+                self.hurt = False
+
     def update(self):
         player_input(
             self.direction,
@@ -36,6 +56,8 @@ class Player(pygame.sprite.Sprite):
         self.collisions.apply_gravity()
         self.collisions.apply_vertical_collisions()
         self.collisions.apply_coin_collisions(self.coin_sprites)
-        self.collisions.apply_enemy_collisions(self.enemy_sprites, self.direction)
-        
-        self.image = self.player.animate(self.direction, self.collisions)
+
+        self.collisions.apply_enemy_collisions(self.enemy_sprites, self.direction, self.decrease_health)
+        self.hurt_timer()
+
+        self.image = self.player.animate(self.direction, self.collisions, self.hurt)

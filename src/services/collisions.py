@@ -5,6 +5,7 @@ class Collisions:
         self.rect = rect
         self.on_ground = False
         self.gravity = gravity
+        self.player_health = 3
 
     def apply_horizontal_collisions(self):
         for sprite in self.collision_sprites:
@@ -47,15 +48,16 @@ class Collisions:
                 sprite.kill()
 
     # This method is used for player's collisions with enemies
-    def apply_enemy_collisions(self, enemy_sprites, direction):
+    def apply_enemy_collisions(self, enemy_sprites, direction, decrease_health):
         for enemy in enemy_sprites:
             if enemy.rect.colliderect(self.rect):
 
-                # The enemy is destroyed if the player is moving down
+                # The enemy is destroyed if the player jumps on it
                 if enemy.rect.top < self.rect.bottom < enemy.rect.centery \
                     and self.direction.y >= 0:
                         enemy.kill()
                         direction.y = -14
                 
                 else:
-                    print("HURT")
+                    decrease_health()
+                    
