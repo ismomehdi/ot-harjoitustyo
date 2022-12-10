@@ -4,14 +4,23 @@ from config.sprite_sizes import TILE_SIZE
 
 class Camera(pygame.sprite.Group):
     def __init__(self, display_surface):
+
+        """The Camera class is used to render the visible sprites on the display surface.
+
+        The camera moves when the player gets close to the camera 'borders'. The camera 
+        borders are defined in the self.camera dictionary. For example, if the player's
+        position is equal to self.camera[left], the camera moves left. If the player's
+        position is equal to self.camera[right], the camera moves right. The same goes
+        for the top and bottom borders.
+
+        Attributes:
+            display_surface: The display surface is used to render the sprites.
+        """
+
         super().__init__()
         self.display_surface = display_surface
         self.offset = []
 
-        # This controls when the camera moves. For example
-        # if the player's position is 150px from left, the
-        # camera moves. You can think of these as the camera
-        # 'borders'
         self.camera = {
             'left': 150,
             'right': display_surface.get_size()[0] / 2,
@@ -19,19 +28,23 @@ class Camera(pygame.sprite.Group):
             'bottom': TILE_SIZE
         }
 
-        # This calculates the width and height of the camera area by
-        # substracting the camera border values from the display size
         camera_width = display_surface.get_size()[0] - (
             self.camera['left'] + self.camera['right'])
 
         camera_height = display_surface.get_size()[1] - (
             self.camera['top'] + self.camera['bottom'])
 
-        # These are the camera rectangle coordinates and size
         self.camera_rect = pygame.Rect(
             self.camera['left'], self.camera['top'], camera_width, camera_height)
 
     def camera_draw(self, player):
+        """Draws the visible sprites on the display surface so that their position is
+        manipulated by the offset value.
+
+        Args:
+            player: The player sprite.
+        """
+
         # This changes the camera rectangle coordinates if the player gets
         # close to the camera 'borders'. In other words, this moves the camera.
         if player.rect.right > self.camera_rect.right:

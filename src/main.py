@@ -5,12 +5,10 @@ from world import World
 from config.display import display, display_surface
 from level import level_map
 
-# Pygame configuration
 pygame.init()
 clock = pygame.time.Clock()
 world = World(level_map, display_surface)
 
-# Game loop
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
