@@ -1,5 +1,6 @@
 import pygame
-from config.sprite_sizes import TILE_SIZE
+from config.general import TILE_SIZE
+from config.paths import COIN_IMAGES_PATH
 from services.import_images import import_folder
 
 
@@ -8,7 +9,7 @@ class Coin(pygame.sprite.Sprite):
         super().__init__(groups)
         self.frame_index = 0
         self.animation_speed = 0.15
-        self.animation_frames = import_folder('./src/assets/images/coin/')
+        self.animation_frames = import_folder(COIN_IMAGES_PATH)
         self.image = self.animation_frames[self.frame_index]
         self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
         self.rect = self.image.get_rect(topleft=position)

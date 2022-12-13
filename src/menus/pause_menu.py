@@ -1,35 +1,34 @@
 from config.display import display
 from services.timer import timer_start, timer_stop
 from services.import_images import import_folder
+from config.paths import PAUSE_MENU_IMAGES_PATH
 import sys
 import pygame
 
 
-class MainMenu:
+class PauseMenu:
     def __init__(self):
         self.cursor = 0
-        self.state = 'new_game'
+        self.state = 'continue'
 
         self.input_timer = 0
         self.input_delay = 200
-        self.game_menu = True
+        self.on = False
+        self.restart = False
         
-        self.images = import_folder('src/assets/images/menu/main_menu/')
+        self.images = import_folder(PAUSE_MENU_IMAGES_PATH)
         self.image = self.images[self.cursor]
-
-        self.player_image = pygame.image.load(
-            'src/assets/images/player/idle/player_idle_frame_01.png')
-        self.player_rect = self.player_image.get_rect(bottomleft=(144, 720))
 
     def get_player_input(self):
         keys = pygame.key.get_pressed()
         self.timer_stop = timer_stop(self.input_timer)
 
         if keys[pygame.K_RETURN]:
-            if self.state == 'new_game':
-                self.game_menu = False
-            elif self.state == 'options':
-                pass
+            if self.state == 'continue':
+                self.on = False
+            elif self.state == 'main_menu':
+                self.restart = True
+                self.on = False
             elif self.state == 'quit':
                 pygame.quit()
                 sys.exit()
@@ -57,9 +56,9 @@ class MainMenu:
 
     def update_state(self):
         if self.cursor == 0:
-            self.state = 'new_game'
+            self.state = 'continue'
         elif self.cursor == 1:
-            self.state = 'options'
+            self.state = 'main_menu'
         elif self.cursor == 2:
             self.state = 'quit'
 
@@ -69,4 +68,4 @@ class MainMenu:
         self.get_player_input()
         self.image = self.images[self.cursor]
         display.blit(self.image, (0, 0))
-        display.blit(self.player_image, self.player_rect)
+        

@@ -1,3 +1,6 @@
+BG_COLOR = '#E8F8FF'
+MENU_COLOR = (215, 215, 215)
+
 # Most of the sprites are fixed size or 
 # they are scaled to the tile size.
 TILE_SIZE = 48

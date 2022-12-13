@@ -1,6 +1,6 @@
 import unittest
-from world import World
-from config.sprite_sizes import TILE_SIZE
+from build_world import BuildWorld
+from config.general import TILE_SIZE
 from config.display import display_surface
 
 level_map_0 = [
@@ -22,7 +22,7 @@ level_map_0 = [
 
 class TestWorld(unittest.TestCase):
     def setUp(self):
-        self.world = World(level_map_0, display_surface)
+        self.world = BuildWorld(level_map_0, display_surface)
 
     def assert_coordinates_equal(self, sprite, x):
         self.assertEqual(sprite.rect.x, x)

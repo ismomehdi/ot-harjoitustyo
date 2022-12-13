@@ -3,6 +3,7 @@ from services.player_input import player_input
 from services.move_character import move_player
 from services.animate_character import AnimateCharacter
 from services.collisions import Collisions
+from config.paths import PLAYER_IMAGES_PATH
 
 
 class Player(pygame.sprite.Sprite):
@@ -19,7 +20,7 @@ class Player(pygame.sprite.Sprite):
 
         super().__init__(groups)
 
-        self.player = AnimateCharacter('./src/assets/images/player/')
+        self.player = AnimateCharacter(PLAYER_IMAGES_PATH)
         self.image = self.player.image
         self.rect = self.image.get_rect(topleft=position)
 

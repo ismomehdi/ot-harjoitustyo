@@ -4,11 +4,11 @@ from sprites.sky_tile import SkyTile
 from sprites.player import Player
 from sprites.coin import Coin
 from sprites.enemy import Enemy
-from camera import Camera
-from config.sprite_sizes import TILE_SIZE, ENEMY_SIZE_OFFSET
+from services.camera import Camera
+from config.general import TILE_SIZE, ENEMY_SIZE_OFFSET
 
 
-class World:
+class BuildWorld:
     def __init__(self, level_map, display_surface):
         """The World class is used to set up the level and the sprites.
 

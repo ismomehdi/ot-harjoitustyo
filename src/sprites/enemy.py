@@ -1,8 +1,10 @@
 import pygame
-from config.sprite_sizes import TILE_SIZE
+from config.general import TILE_SIZE
+from config.paths import ENEMY_IMAGES_PATH
 from services.collisions import Collisions
 from services.animate_character import AnimateCharacter
 from services.move_character import move_enemy
+from random import randint
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -10,7 +12,7 @@ class Enemy(pygame.sprite.Sprite):
         super().__init__(groups)
 
         # The AnimatedCharacter class is used to animate the enemy
-        self.enemy = AnimateCharacter('./src/assets/images/enemy/')
+        self.enemy = AnimateCharacter(ENEMY_IMAGES_PATH)
         self.image = self.enemy.image
         self.rect = self.image.get_rect(topleft=position)
 
@@ -21,6 +23,7 @@ class Enemy(pygame.sprite.Sprite):
 
         # Enemy movement
         self.direction = pygame.math.Vector2()
+        self.direction.x = 1
         self.speed = 2
         self.chase_speed = 100
         self.gravity = 0.7

@@ -1,5 +1,5 @@
 import pygame
-from config.sprite_sizes import TILE_SIZE
+from config.general import TILE_SIZE
 
 
 class Camera(pygame.sprite.Group):

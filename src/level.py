@@ -2,7 +2,7 @@
 
 import pygame
 from maps import maps
-from config.sprite_sizes import TILE_SIZE
+from config.general import TILE_SIZE
 
 level_map = maps['level_1']
 LEVEL_X = len(level_map[0]) * TILE_SIZE
