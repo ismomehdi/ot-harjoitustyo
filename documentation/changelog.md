@@ -21,4 +21,10 @@
 - Added player graphics.
 - Added coin position unit test.
 
+## Week 5
+
+- Added enemies.
+- Added main menu and a pause menu.
+- Refactored code.
+
 
