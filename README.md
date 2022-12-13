@@ -1,5 +1,9 @@
 # Ohjelmistotekniikka, harjoitustyö
 
+## Release
+
+[Here's](https://github.com/ismomehdi/ot-harjoitustyo/releases/tag/viikko6) the latest release.
+
 ## Documentation
 
 [Software Requirements Specification](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/software_requirements_specification.md)
