@@ -1,10 +1,14 @@
-# This can be used in future development for choosing the level
-
 import pygame
-from maps import maps
+from services.import_maps import import_maps
 from config.general import TILE_SIZE
 
+# In the future, the level will be selected by the user
+# and this module will be done differently
+
+maps = import_maps()
+
 level_map = maps['level_1']
+
 LEVEL_X = len(level_map[0]) * TILE_SIZE
 LEVEL_Y = len(level_map) * TILE_SIZE
 
