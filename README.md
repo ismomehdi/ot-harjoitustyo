@@ -14,6 +14,8 @@
 
 [Application Architecture](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/architecture.md)
 
+[Manual](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/manual.md)
+
 ## Installation
 
 Install dependencies using the following command:
