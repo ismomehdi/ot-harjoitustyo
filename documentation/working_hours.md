@@ -11,6 +11,10 @@
 | 29.11. | 4h | Did an application architecture diagram as well as some more work to match this week's requirements.
 | 5.12.  | 4h | Spent some time looking for player graphics as well as fonts suitable for the game menus etc.
 | 6.12   | 7h | Added player graphics/animations. Added a new unit test. Added a function for storing level maps in .txt files.
+| 10.12. | 5h | Added enemy.
+| 11.12. | 5h | Created menu graphics and some coding.
+| 12.12. | 5h | Added menu logic.
+| 13.12. | 5h | Refactoring and slight changes.
 
-Total 40h 30min
+Total 60h 30min
 
