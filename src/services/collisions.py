@@ -54,10 +54,9 @@ class Collisions:
 
                 # The enemy is destroyed if the player jumps on it
                 if enemy.rect.top < self.rect.bottom < enemy.rect.centery \
-                    and self.direction.y >= 0:
-                        enemy.kill()
-                        direction.y = -14
-                
+                        and self.direction.y >= 0:
+                    enemy.kill()
+                    direction.y = -14
+
                 else:
                     decrease_health()
-                    

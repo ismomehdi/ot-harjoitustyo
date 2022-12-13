@@ -4,7 +4,6 @@ from config.paths import ENEMY_IMAGES_PATH
 from services.collisions import Collisions
 from services.animate_character import AnimateCharacter
 from services.move_character import move_enemy
-from random import randint
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -44,4 +43,3 @@ class Enemy(pygame.sprite.Sprite):
         self.collisions.apply_gravity()
         self.collisions.apply_vertical_collisions()
         self.image = self.enemy.animate(self.direction, self.collisions)
-

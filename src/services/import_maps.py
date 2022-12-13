@@ -9,6 +9,7 @@ from config.paths import MAPS_PATH
 # x = Sky tile
 # o = Coin
 
+
 def import_maps():
     maps = {}
 
@@ -18,5 +19,5 @@ def import_maps():
                 data = level_file.read().replace("'", "").split("\n")
                 filename = filename.strip('.txt')
                 maps[filename] = data
-    
+
     return maps

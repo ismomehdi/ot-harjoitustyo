@@ -1,10 +1,10 @@
-import pygame
 from level import level_rect
 
 
 def move_player(rect, direction, speed):
     rect.x += direction.x * speed
     rect.clamp_ip(level_rect)
+
 
 def move_enemy(
         rect, direction, speed, starting_pos_x,

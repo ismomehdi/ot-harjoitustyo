@@ -4,7 +4,6 @@ from config.general import TILE_SIZE
 
 class Camera(pygame.sprite.Group):
     def __init__(self, display_surface):
-
         """The Camera class is used to render the visible sprites on the display surface.
 
         The camera moves when the player gets close to the camera 'borders'. The camera 

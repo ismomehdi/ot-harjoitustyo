@@ -32,5 +32,3 @@ class TestWorld(unittest.TestCase):
 
         for coin in coins:
             self.assert_coordinates_equal(coin, TILE_SIZE)
-
-        

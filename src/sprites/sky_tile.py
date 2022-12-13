@@ -2,6 +2,7 @@ import pygame
 from config.general import TILE_SIZE
 from config.paths import SKY_TILE_IMAGE_PATH
 
+
 class SkyTile(pygame.sprite.Sprite):
     def __init__(self, position, groups):
         super().__init__(groups)

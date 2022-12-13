@@ -50,7 +50,7 @@ class AnimateCharacter:
         self.frame_index += self.animation_speed
         if dead and self.frame_index > len(animation_frames):
             return self.image
-        elif self.frame_index > len(animation_frames):
+        if self.frame_index > len(animation_frames):
             self.frame_index = 0
 
         image = animation_frames[int(self.frame_index)]

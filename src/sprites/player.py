@@ -51,7 +51,7 @@ class Player(pygame.sprite.Sprite):
         """
         if self.player_health == 1 and not self.invincible:
             self.dead = True
-            self.rect = self.image.get_rect(bottomleft = self.rect.bottomleft)
+            self.rect = self.image.get_rect(bottomleft=self.rect.bottomleft)
         elif not self.invincible:
             self.player_health -= 1
             self.invincible = True
@@ -74,7 +74,7 @@ class Player(pygame.sprite.Sprite):
 
         if not self.dead:
             move_player(self.rect, self.direction, self.speed)
-            
+
         self.collisions.apply_horizontal_collisions()
         self.collisions.apply_gravity()
         self.collisions.apply_vertical_collisions()
