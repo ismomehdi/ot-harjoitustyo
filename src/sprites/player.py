@@ -4,6 +4,8 @@ from services.move_character import move_player
 from services.animate_character import AnimateCharacter
 from services.collisions import Collisions
 from config.paths import PLAYER_IMAGES_PATH
+from config.general import PLAYER_SPEED, PLAYER_GRAVITY, \
+    PLAYER_JUMP_SPEED, PLAYER_HEALTH, PLAYER_GRACE_PERIOD
 
 
 class Player(pygame.sprite.Sprite):
@@ -25,25 +27,31 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=position)
 
         self.direction = pygame.math.Vector2()
-        self.speed = 8
-        self.gravity = 0.7
-        self.jump_speed = 17
+
+        self.get_player_constants()
 
         self.collisions = Collisions(
             collision_sprites, self.direction, self.rect, self.gravity)
         self.coin_sprites = coin_sprites
         self.enemy_sprites = enemy_sprites
 
-        self.player_health = 5
         self.invincible = False
-        self.hurt_time = 0
-        self.grace_period = 500
         self.dead = False
+        self.hurt_time = 0
+
+    def get_player_constants(self):
+        self.speed = PLAYER_SPEED
+        self.gravity = PLAYER_GRAVITY
+        self.jump_speed = PLAYER_JUMP_SPEED
+        self.player_health = PLAYER_HEALTH
+        self.grace_period = PLAYER_GRACE_PERIOD
+
+        return self.speed, self.gravity, self.jump_speed, self.player_health, self.grace_period
 
     def decrease_health(self):
         """Decreases the player health by 1.
 
-        The self.invincible attribute is set to True for a short period of time 
+        The self.invincible attribute is set to True for a short period of time
         (self.grace_period) to prevent the player from losing all health too quickly.
 
         If the player health is 1 and this method is called, the game is over

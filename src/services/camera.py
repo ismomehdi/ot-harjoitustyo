@@ -6,7 +6,7 @@ class Camera(pygame.sprite.Group):
     def __init__(self, display_surface):
         """The Camera class is used to render the visible sprites on the display surface.
 
-        The camera moves when the player gets close to the camera 'borders'. The camera 
+        The camera moves when the player gets close to the camera 'borders'. The camera
         borders are defined in the self.camera dictionary. For example, if the player's
         position is equal to self.camera[left], the camera moves left. If the player's
         position is equal to self.camera[right], the camera moves right. The same goes
