@@ -78,7 +78,8 @@ class Player(pygame.sprite.Sprite):
         player_input(
             self.direction,
             self.jump_speed,
-            self.collisions.ground())
+            self.collisions.on_ground,
+            pygame.key.get_pressed())
 
         if not self.dead:
             move_player(self.rect, self.direction, self.speed)

@@ -15,7 +15,7 @@ class MenuInit:
             'main_menu': True
         }
 
-        self.input_delay = 200
+        self.input_delay = 170
         self.input_timer = 0
         self.timer_stop = None
 
@@ -39,8 +39,7 @@ class MenuInit:
 
         return self.option
 
-    def process_player_input(self):
-        keys = pygame.key.get_pressed()
+    def process_player_input(self, keys):
         self.timer_stop = timer_stop(self.input_timer)
 
         self.process_return_key(keys)

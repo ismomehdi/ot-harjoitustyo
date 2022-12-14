@@ -1,3 +1,4 @@
+import pygame
 from config.display import display
 from config.paths import PAUSE_MENU_IMAGES_PATH
 from services.import_images import import_folder
@@ -14,6 +15,6 @@ class PauseMenu(MenuInit):
         self.image = self.images[self.cursor]
 
     def run_menu(self):
-        self.process_player_input()
+        self.process_player_input(pygame.key.get_pressed())
         self.image = self.images[self.cursor]
         display.blit(self.image, (0, 0))

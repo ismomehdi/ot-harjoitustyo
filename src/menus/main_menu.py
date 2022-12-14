@@ -19,7 +19,7 @@ class MainMenu(MenuInit):
         self.player_rect = self.player_image.get_rect(bottomleft=(144, 720))
 
     def run_menu(self):
-        self.process_player_input()
+        self.process_player_input(pygame.key.get_pressed())
         self.image = self.images[self.cursor]
         display.blit(self.image, (0, 0))
         display.blit(self.player_image, self.player_rect)

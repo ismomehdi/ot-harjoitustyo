@@ -34,9 +34,6 @@ class Collisions:
         if self.on_ground and self.direction.y != 0:
             self.on_ground = False
 
-    def ground(self):
-        return self.on_ground
-
     def apply_gravity(self):
         self.direction.y += self.gravity
         self.rect.y += self.direction.y

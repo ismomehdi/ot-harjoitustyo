@@ -38,9 +38,9 @@ class AnimateCharacter:
             self.animation_speed = 0.1
         elif direction.y < 0:
             self.status = 'jump'
-        elif direction.x != 0 and collisions.ground():
+        elif direction.x != 0 and collisions.on_ground:
             self.status = 'run'
-        elif collisions.ground():
+        elif collisions.on_ground:
             self.status = 'idle'
 
     def animate(self, direction, collisions, invincible=False, dead=False):

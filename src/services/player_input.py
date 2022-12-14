@@ -1,9 +1,7 @@
 import pygame
 
 
-def player_input(direction, jump_speed, player_on_ground):
-    keys = pygame.key.get_pressed()
-
+def player_input(direction, jump_speed, player_on_ground, keys):
     # This controls the player left and right movement
     if keys[pygame.K_RIGHT]:
         direction.x = 1
