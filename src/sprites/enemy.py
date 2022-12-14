@@ -1,6 +1,7 @@
 import pygame
 from config.general import TILE_SIZE
 from config.paths import ENEMY_IMAGES_PATH
+from config.general import ENEMY_AREA_SIZE, ENEMY_SPEED, ENEMY_CHASE_SPEED, ENEMY_GRAVITY
 from services.collisions import Collisions
 from services.animate_character import AnimateCharacter
 from services.move_character import move_enemy
@@ -18,14 +19,14 @@ class Enemy(pygame.sprite.Sprite):
         # Enemy starting position and area size for movement
         self.starting_pos_x = position[0]
         self.starting_pos_y = position[1]
-        self.area_size = TILE_SIZE * 20
+        self.area_size = ENEMY_AREA_SIZE
 
         # Enemy movement
         self.direction = pygame.math.Vector2()
         self.direction.x = 1
-        self.speed = 2
-        self.chase_speed = 100
-        self.gravity = 0.7
+        self.speed = ENEMY_SPEED
+        self.chase_speed = ENEMY_CHASE_SPEED
+        self.gravity = ENEMY_GRAVITY
 
         # For collisions
         self.collisions = Collisions(

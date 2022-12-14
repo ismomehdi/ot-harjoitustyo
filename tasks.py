@@ -15,6 +15,7 @@ def coverage(ctx):
 @task(coverage)
 def coverage_report(ctx):
     ctx.run("coverage html", pty=True)
+    ctx.run("open htmlcov/index.html", pty=True)
 
 @task()
 def format(ctx):
