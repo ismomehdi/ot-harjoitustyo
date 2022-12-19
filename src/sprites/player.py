@@ -35,6 +35,7 @@ class Player(pygame.sprite.Sprite):
         self.coin_sprites = coin_sprites
         self.enemy_sprites = enemy_sprites
 
+        self.points = 0
         self.invincible = False
         self.dead = False
         self.hurt_time = 0
@@ -72,6 +73,10 @@ class Player(pygame.sprite.Sprite):
             if pygame.time.get_ticks() - self.hurt_time >= self.grace_period:
                 self.invincible = False
 
+    def get_points(self):
+        self.points = self.collisions.player_points
+        return self.points
+
     def update(self):
         """Updates the player sprite.
         """
@@ -95,3 +100,5 @@ class Player(pygame.sprite.Sprite):
 
         self.image = self.player.animate(
             self.direction, self.collisions, self.invincible, self.dead)
+        
+        self.points = self.get_points()

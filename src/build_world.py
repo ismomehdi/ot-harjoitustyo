@@ -5,6 +5,7 @@ from sprites.player import Player
 from sprites.coin import Coin
 from sprites.enemy import Enemy
 from services.camera import Camera
+from services.draw_text import draw_text
 from config.general import TILE_SIZE, ENEMY_SIZE_OFFSET
 
 
@@ -59,8 +60,24 @@ class BuildWorld:
                               self.enemy_sprites],
                           self.collision_sprites, self.player_sprite)
 
+    def draw_points(self):
+        """Draws the points on the screen.
+        """
+
+        points = self.player.points
+        
+        text = f'POINTS: {points:04}'
+        font = 'src/assets/fonts/Broken Console Bold.ttf'
+        size = 30
+        color = '#495F63'
+        position = (1150, 30)
+
+        draw_text(text, font, size, color, position)
+        
+
     def run_world(self):
         """Runs the world by updating the sprites and drawing the visible sprites.
         """
         self.active_sprites.update()
         self.visible_sprites.camera_draw(self.player)
+        self.draw_points()

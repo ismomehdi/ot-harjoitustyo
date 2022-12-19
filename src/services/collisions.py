@@ -6,6 +6,7 @@ class Collisions:
         self.on_ground = False
         self.gravity = gravity
         self.player_health = 3
+        self.player_points = 0
 
     def apply_horizontal_collisions(self):
         for sprite in self.collision_sprites:
@@ -42,6 +43,7 @@ class Collisions:
     def apply_coin_collisions(self, coin_sprites):
         for sprite in coin_sprites:
             if sprite.rect.colliderect(self.rect):
+                self.player_points += 1
                 sprite.kill()
 
     # This method is used for player's collisions with enemies
@@ -54,6 +56,7 @@ class Collisions:
                         and self.direction.y >= 0:
                     enemy.kill()
                     direction.y = -14
+                    self.player_points += 10
 
                 else:
                     decrease_health()
