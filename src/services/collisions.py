@@ -1,3 +1,5 @@
+from config.general import COIN_POINTS, ENEMY_POINTS, PLAYER_HEALTH, PLAYER_COLLISION_JUMP_SPEED
+
 class Collisions:
     def __init__(self, collision_sprites, direction, rect, gravity):
         self.collision_sprites = collision_sprites
@@ -5,7 +7,7 @@ class Collisions:
         self.rect = rect
         self.on_ground = False
         self.gravity = gravity
-        self.player_health = 3
+        self.player_health = PLAYER_HEALTH
         self.player_points = 0
 
     def apply_horizontal_collisions(self):
@@ -43,7 +45,7 @@ class Collisions:
     def apply_coin_collisions(self, coin_sprites):
         for sprite in coin_sprites:
             if sprite.rect.colliderect(self.rect):
-                self.player_points += 1
+                self.player_points += COIN_POINTS
                 sprite.kill()
 
     # This method is used for player's collisions with enemies
@@ -55,8 +57,8 @@ class Collisions:
                 if enemy.rect.top < self.rect.bottom < enemy.rect.centery \
                         and self.direction.y >= 0:
                     enemy.kill()
-                    direction.y = -14
-                    self.player_points += 10
+                    direction.y = -PLAYER_COLLISION_JUMP_SPEED
+                    self.player_points += ENEMY_POINTS
 
                 else:
                     decrease_health()
