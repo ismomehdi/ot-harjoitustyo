@@ -26,3 +26,4 @@ ENEMY_GRAVITY = 0.7
 # The points the player gets
 COIN_POINTS = 1
 ENEMY_POINTS = 10
+

@@ -6,6 +6,7 @@ ENEMY_IMAGES_PATH = 'src/assets/images/enemy/'
 COIN_IMAGES_PATH = 'src/assets/images/coin/'
 GROUND_TILE_IMAGE_PATH = 'src/assets/images/tiles/ground_tile.png'
 SKY_TILE_IMAGE_PATH = 'src/assets/images/tiles/sky_tile.png'
+GOAL_IMAGES_PATH = 'src/assets/images/goal/'
 
 # Menu images
 PAUSE_MENU_IMAGES_PATH = 'src/assets/images/menu/pause_menu/'

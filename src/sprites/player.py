@@ -39,6 +39,7 @@ class Player(pygame.sprite.Sprite):
         self.invincible = False
         self.dead = False
         self.hurt_time = 0
+        self.reached_goal = False
 
     def get_player_constants(self):
         self.speed = PLAYER_SPEED
@@ -46,8 +47,6 @@ class Player(pygame.sprite.Sprite):
         self.jump_speed = PLAYER_JUMP_SPEED
         self.player_health = PLAYER_HEALTH
         self.grace_period = PLAYER_GRACE_PERIOD
-
-        return self.speed, self.gravity, self.jump_speed, self.player_health, self.grace_period
 
     def decrease_health(self):
         """Decreases the player health by 1.
@@ -80,13 +79,16 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         """Updates the player sprite.
         """
-        player_input(
-            self.direction,
-            self.jump_speed,
-            self.collisions.on_ground,
-            pygame.key.get_pressed())
+        if self.reached_goal:
+            self.direction.x = 0
 
-        if not self.dead:
+        elif not self.dead and not self.reached_goal:
+            player_input(
+                self.direction,
+                self.jump_speed,
+                self.collisions.on_ground,
+                pygame.key.get_pressed())
+
             move_player(self.rect, self.direction, self.speed)
 
         self.collisions.apply_horizontal_collisions()
