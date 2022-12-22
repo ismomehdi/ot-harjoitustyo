@@ -43,10 +43,10 @@ class Collisions:
 
     # This method is used for player's collisions with coins
     def apply_coin_collisions(self, coin_sprites):
-        for sprite in coin_sprites:
-            if sprite.rect.colliderect(self.rect):
+        for coin in coin_sprites:
+            if coin.rect.colliderect(self.rect):
                 self.player_points += COIN_POINTS
-                sprite.kill()
+                coin.kill()
 
     # This method is used for player's collisions with enemies
     def apply_enemy_collisions(self, enemy_sprites, direction, decrease_health):
@@ -62,3 +62,4 @@ class Collisions:
 
                 else:
                     decrease_health()
+                    

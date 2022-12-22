@@ -70,9 +70,9 @@ class BuildWorld:
         """Draws the points on the screen.
         """
 
-        points = self.player.points
+        score = self.player.score
         
-        text = f'POINTS: {points:04}'
+        text = f'SCORE: {score:04}'
         font = 'src/assets/fonts/Broken Console Bold.ttf'
         size = 30
         color = '#735d78'

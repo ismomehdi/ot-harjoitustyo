@@ -17,7 +17,9 @@ class GameState:
         self.pause = PauseMenu()
         self.finish = FinishScreen()
 
-    def handle_quit_and_pause_input(self):
+    def handle_user_input(self):
+        score = self.world.player.score
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -28,13 +30,28 @@ class GameState:
                 main_menu = self.menu.state['main_menu']
                 if event.key == pygame.K_ESCAPE and not main_menu:
                     self.pause.state['on_pause'] = True
+                
+                if self.finish.high_score:
+                    if event.key == pygame.K_BACKSPACE:
+                        self.finish.user_input = self.finish.user_input[:-1]
+
+                    elif len(self.finish.user_input) < 10:
+                        self.finish.user_input += event.unicode
+
+                    if event.key == pygame.K_RETURN:
+                        if self.finish.user_input == '':
+                            self.finish.user_input = 'Player'
+
+                        self.finish.enter_name(score)
+                        self.finish.high_score = False
+                        self.finish.high_scores_screen = True
 
     def run(self):
         restart = self.pause.state['restart']
         pause = self.pause.state['on_pause']
         main_menu = self.menu.state['main_menu']
         reached_goal = self.world.reached_goal
-        points = self.world.player.points 
+        score = self.world.player.score 
 
         if restart:
             self.world = BuildWorld(level_map, display_surface)
@@ -52,12 +69,18 @@ class GameState:
         
         elif reached_goal:
             display.fill(BG_COLOR)
-            self.finish.run(points)
+
+            if self.finish.win_screen:
+                self.finish.draw_win_screen(score)
+            elif self.finish.high_score:
+                self.finish.draw_enter_name_screen()
+            elif self.finish.high_scores_screen:
+                self.finish.draw_high_scores()
+            else:
+                self.pause.state['restart'] = True
+
             self.world.run_world()
             pygame.display.update()
-
-            if self.finish.exit:
-                self.pause.state['restart'] = True
 
         else:
             display.fill(BG_COLOR)

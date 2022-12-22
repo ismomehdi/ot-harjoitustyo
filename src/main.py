@@ -1,5 +1,6 @@
 import pygame
 from game_state import GameState
+from db.init_db import init_db
 
 def main():
     pygame.init()
@@ -7,7 +8,7 @@ def main():
     game = GameState()
 
     while True:
-        game.handle_quit_and_pause_input()
+        game.handle_user_input()
         game.run()
 
 if __name__ == '__main__':

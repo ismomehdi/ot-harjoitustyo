@@ -11,7 +11,7 @@ class TestGameState(unittest.TestCase):
         event.key = pygame.K_ESCAPE
         pygame.event.post(event)
 
-        self.game.handle_quit_and_pause_input()
+        self.game.handle_user_input()
         pause_state = self.game.pause.state['on_pause']
         self.assertTrue(pause_state)
 

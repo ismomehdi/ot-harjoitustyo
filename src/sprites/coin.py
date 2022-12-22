@@ -10,6 +10,7 @@ class Coin(pygame.sprite.Sprite):
         super().__init__(groups)
         self.coin = AnimateObject(COIN_IMAGES_PATH)
         self.image = self.coin.image
+        self.image = pygame.transform.scale(self.image, (TILE_SIZE, TILE_SIZE))
         self.rect = self.image.get_rect(topleft=position)
 
     def update(self):
