@@ -1,5 +1,6 @@
 from config.general import COIN_POINTS, ENEMY_POINTS, PLAYER_HEALTH, PLAYER_COLLISION_JUMP_SPEED
 
+
 class Collisions:
     def __init__(self, collision_sprites, direction, rect, gravity):
         self.collision_sprites = collision_sprites
@@ -62,4 +63,3 @@ class Collisions:
 
                 else:
                     decrease_health()
-                    

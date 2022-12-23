@@ -1,7 +1,6 @@
 import pygame
 from config.general import TILE_SIZE
 from config.paths import COIN_IMAGES_PATH
-from services.import_images import import_folder
 from services.animate_object import AnimateObject
 
 

@@ -1,6 +1,6 @@
 import pygame
 from game_state import GameState
-from db.init_db import init_db
+from db.config import setup_database
 
 def main():
     pygame.init()
@@ -12,4 +12,5 @@ def main():
         game.run()
 
 if __name__ == '__main__':
+    setup_database()
     main()

@@ -22,6 +22,7 @@ class BuildWorld:
         self.active_sprites = pygame.sprite.Group()
         self.collision_sprites = pygame.sprite.Group()
         self.coin_sprites = pygame.sprite.Group()
+        self.saw_sprites = pygame.sprite.Group()
         self.enemy_sprites = pygame.sprite.Group()
         self.player_sprite = pygame.sprite.GroupSingle()
         self.goal_sprite = pygame.sprite.GroupSingle()
@@ -47,8 +48,8 @@ class BuildWorld:
                     SkyTile((x_position, y_position), [self.visible_sprites,
                             self.collision_sprites])
                 if column == 'f':
-                    self. goal = Goal((x_position, y_position), 
-                                [self.visible_sprites, self.active_sprites, self.goal_sprite])
+                    self. goal = Goal((x_position, y_position),
+                                      [self.visible_sprites, self.active_sprites, self.goal_sprite])
                 if column == 'P':
                     self.player = Player((x_position, y_position),
                                          [self.visible_sprites,
@@ -65,13 +66,16 @@ class BuildWorld:
                           [self.visible_sprites, self.active_sprites,
                               self.enemy_sprites],
                           self.collision_sprites, self.player_sprite)
+                if column == 's':
+                    Saw((x_position, y_position),
+                        [self.visible_sprites, self.active_sprites, self.saw_sprites])
 
     def draw_points(self):
         """Draws the points on the screen.
         """
 
         score = self.player.score
-        
+
         text = f'SCORE: {score:04}'
         font = 'src/assets/fonts/Broken Console Bold.ttf'
         size = 30
@@ -79,14 +83,14 @@ class BuildWorld:
         position = (1150, 30)
 
         draw_text(text, font, size, color, position)
-        
+
     def check_if_reached_goal(self):
         player_x = self.player.rect.x
         goal_x = self.goal.rect.x
 
         if player_x >= goal_x - 100:
             self.player.reached_goal = True
-        
+
         self.reached_goal = self.player.reached_goal
 
     def run_world(self):

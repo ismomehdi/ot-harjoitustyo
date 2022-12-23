@@ -1,5 +1,4 @@
 import pygame
-from config.general import TILE_SIZE
 from config.paths import ENEMY_IMAGES_PATH
 from config.general import ENEMY_AREA_SIZE, ENEMY_SPEED, ENEMY_CHASE_SPEED, ENEMY_GRAVITY
 from services.collisions import Collisions

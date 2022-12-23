@@ -1,8 +1,10 @@
 from level import level_rect
 
+
 def move_player(rect, direction, speed):
     rect.x += direction.x * speed
     rect.clamp_ip(level_rect)
+
 
 def move_enemy(
         rect, direction, speed, starting_pos_x,
@@ -21,8 +23,6 @@ def move_enemy(
             direction.x = 1
         if player.sprite.rect.x + chase_speed < rect.x:
             direction.x = -1
-
-    
 
     rect.x += direction.x * speed
     rect.clamp_ip(level_rect)

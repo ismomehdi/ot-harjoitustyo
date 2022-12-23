@@ -30,7 +30,7 @@ class GameState:
                 main_menu = self.menu.state['main_menu']
                 if event.key == pygame.K_ESCAPE and not main_menu:
                     self.pause.state['on_pause'] = True
-                
+
                 if self.finish.high_score:
                     if event.key == pygame.K_BACKSPACE:
                         self.finish.user_input = self.finish.user_input[:-1]
@@ -51,7 +51,7 @@ class GameState:
         pause = self.pause.state['on_pause']
         main_menu = self.menu.state['main_menu']
         reached_goal = self.world.reached_goal
-        score = self.world.player.score 
+        score = self.world.player.score
 
         if restart:
             self.world = BuildWorld(level_map, display_surface)
@@ -66,7 +66,7 @@ class GameState:
         elif main_menu:
             self.menu.run_menu()
             pygame.display.update()
-        
+
         elif reached_goal:
             display.fill(BG_COLOR)
 

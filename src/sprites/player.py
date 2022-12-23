@@ -102,5 +102,5 @@ class Player(pygame.sprite.Sprite):
 
         self.image = self.player.animate(
             self.direction, self.collisions, self.invincible, self.dead)
-        
+
         self.score = self.get_points()
