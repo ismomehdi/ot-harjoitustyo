@@ -22,5 +22,7 @@ def move_enemy(
         if player.sprite.rect.x + chase_speed < rect.x:
             direction.x = -1
 
+    
+
     rect.x += direction.x * speed
     rect.clamp_ip(level_rect)

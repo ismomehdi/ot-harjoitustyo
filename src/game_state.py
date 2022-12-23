@@ -78,6 +78,7 @@ class GameState:
                 self.finish.draw_high_scores()
             else:
                 self.pause.state['restart'] = True
+                return
 
             self.world.run_world()
             pygame.display.update()
