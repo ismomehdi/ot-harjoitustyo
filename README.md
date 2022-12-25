@@ -2,7 +2,7 @@
 
 ## Release
 
-[Here's](https://github.com/ismomehdi/ot-harjoitustyo/releases/tag/viikko6) the latest release.
+[Here's](https://github.com/ismomehdi/ot-harjoitustyo/releases/tag/viikko7) the latest release.
 
 ## Documentation
 
