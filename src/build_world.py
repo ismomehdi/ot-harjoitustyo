@@ -6,7 +6,7 @@ from sprites.coin import Coin
 from sprites.enemy import Enemy
 from sprites.goal import Goal
 from services.camera import Camera
-from text.text import Text
+from services.text import Text
 from config.general import TILE_SIZE, ENEMY_SIZE_OFFSET
 
 

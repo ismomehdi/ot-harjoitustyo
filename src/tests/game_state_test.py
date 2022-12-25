@@ -17,13 +17,9 @@ class TestGameState(unittest.TestCase):
 
     def test_restart(self):
         self.game = GameState()
-        self.game._world = None
-
+        self.game._world.reached_goal = True
         self.game._pause.state['restart'] = True
         self.game.run()
 
-        self.assertIsNotNone(self.game._world)
-
-
-
+        self.assertFalse(self.game._world.reached_goal)
 

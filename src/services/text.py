@@ -30,6 +30,11 @@ class Text:
 
     @classmethod
     def high_score_stats(cls, high_scores):
+        """Draws the high score stats on the screen.
+
+        Args:
+            high_scores: A list of high score dictionaries.
+        """
         row_position = 0
         spacing = ts.HS_BODY_SPACING
 
@@ -56,11 +61,16 @@ class Text:
             row_position += spacing
 
         draw_text('press any key to proceed', cls.font,
-                  ts.HS_PRESS_ANY_KEY_SIZE, cls.color_1, (ts.HS_PRESS_ANY_KEY_POS + row_position))
+                  ts.HS_PRESS_ANY_KEY_SIZE, cls.color_1, (ts.HS_PRESS_ANY_KEY_POS_X,
+                  ts.HS_BODY_POS_Y + row_position))
 
     @classmethod
     def enter_name(cls, user_input):
+        """Draws the enter name screen.
 
+        Args:
+            user_input: The user's input string.
+        """
         draw_text('TOP 10 SCORE!', cls.font, ts.ENTER_NAME_TITLE_SIZE,
                   cls.color_2, ts.ENTER_NAME_TITLE_POS)
 
@@ -72,7 +82,11 @@ class Text:
 
     @classmethod
     def win(cls, score):
+        """Draws the win screen.
 
+        Args:
+            score: The player's score integer.
+        """
         draw_text('YOU WIN!', cls.font, ts.YOU_WIN_TITLE_SIZE,
                   cls.color_2, ts.YOU_WIN_TITLE_POS)
 
@@ -84,7 +98,7 @@ class Text:
 
     @classmethod
     def game_over(cls):
-
+        """Draws the game over screen."""
         draw_text('GAME OVER', cls.font, ts.GAME_OVER_TITLE_SIZE,
                   cls.color_2, ts.GAME_OVER_TITLE_POS)
 

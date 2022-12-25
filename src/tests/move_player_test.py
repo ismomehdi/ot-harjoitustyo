@@ -14,7 +14,7 @@ level_map_0 = [
     '                                                        ',
     '                                                        ',
     '                                                        ',
-    'P                                                       ',
+    'P                           f                           ',
     'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
     'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
     'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX']
@@ -40,3 +40,18 @@ class TestWorld(unittest.TestCase):
         player.rect.y += TILE_SIZE
         self.assert_coordinates_equal(
             player, TILE_SIZE, 11 * TILE_SIZE)
+
+    def test_check_if_reached_goal(self):
+        self.world.player.rect.x = 150
+        self.world.goal.rect.x = 100
+        self.world.check_if_reached_goal()
+
+        self.assertTrue(self.world.reached_goal)
+
+    def test_check_if_didnt_reach_goal(self):
+        self.world.player.rect.x = 10
+        self.world.goal.rect.x = 200
+        self.world.check_if_reached_goal()
+
+        self.assertFalse(self.world.reached_goal)
+
