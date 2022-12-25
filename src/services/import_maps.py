@@ -5,7 +5,7 @@ from config.paths import MAPS_PATH
 def import_maps():
     """Imports the level maps from the levels folder.
 
-    The level maps are saved as .txt files. The following characters are used to 
+    The level maps are saved as .txt files. The following characters are used to
     build the level in the .txt file:
 
     P = Player

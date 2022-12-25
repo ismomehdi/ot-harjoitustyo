@@ -40,16 +40,16 @@ class Camera(pygame.sprite.Group):
         """Draws the visible sprites on the display surface so that their position is
         manipulated by the offset value.
 
-        1. Changes the camera rectangle coordinates if the player gets close to the 
+        1. Changes the camera rectangle coordinates if the player gets close to the
         camera 'borders'. So in other words, moves the camera.
 
-        2. Ensures the camera moves left only if the player is not in the starting 
+        2. Ensures the camera moves left only if the player is not in the starting
         position (edge of the world).
 
-        3. The offset vector calculates the distance from the camera borders to the 
+        3. The offset vector calculates the distance from the camera borders to the
         surface borders.
 
-        4. The visible sprites are drawn on the surface so that their position is 
+        4. The visible sprites are drawn on the surface so that their position is
         manipulated by the offset value.
 
         Args:

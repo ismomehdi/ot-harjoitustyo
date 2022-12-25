@@ -2,7 +2,7 @@ from level import level_rect
 
 
 def move_player(rect, direction, speed):
-    """Moves the player sprite. The clamp_ip method is used 
+    """Moves the player sprite. The clamp_ip method is used
     to prevent the player from moving outside the level area.
 
     Args:

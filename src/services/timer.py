@@ -12,7 +12,7 @@ def timer_start():
 
 
 def timer_stop(timer):
-    """Calculates the time difference between 
+    """Calculates the time difference between
     the timer start time and the current time.
 
     Args:

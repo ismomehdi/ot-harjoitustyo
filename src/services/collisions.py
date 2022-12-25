@@ -69,8 +69,8 @@ class Collisions:
 
         Args:
             enemy_sprites: The enemy sprite group.
-            direction: A direction vector. 
-            decrease_health: A function that decreases the player's health. 
+            direction: A direction vector.
+            decrease_health: A function that decreases the player's health.
         """
 
         for enemy in enemy_sprites:

@@ -1,9 +1,7 @@
 import pygame
-from services.draw_text import draw_text
-from config.display import DISPLAY_WIDTH, DISPLAY_HEIGHT
 from db.high_score_repository import HighScoreRepository
 from text.text import Text
-from level import level
+from level import LEVEL
 
 
 class FinishScreen:
@@ -22,7 +20,7 @@ class FinishScreen:
             to determine if the user has released all keys.
 
         Returns:
-            boolean: True if NO keys are pressed, 
+            boolean: True if NO keys are pressed,
                 False otherwise.
         """
         keys = pygame.key.get_pressed()
@@ -32,14 +30,14 @@ class FinishScreen:
         """Checks if any keys are pressed.
 
         Returns:
-            boolean: True if any keys are pressed, 
+            boolean: True if any keys are pressed,
                 False otherwise.
         """
         keys = pygame.key.get_pressed()
         return any(keys)
 
     def draw_game_over_screen(self):
-        """Uses the Text class to draw the game over screen and 
+        """Uses the Text class to draw the game over screen and
             handles the user input.
         """
         Text.game_over()
@@ -53,7 +51,7 @@ class FinishScreen:
 
     def draw_win_screen(self, score):
         """Uses the Text class to draw the win screen and
-            handles the user input. Also checks if the score 
+            handles the user input. Also checks if the score
             is a high score.
 
         Args:
@@ -65,7 +63,7 @@ class FinishScreen:
             self.ready_to_exit = True
 
         if self.ready_to_exit and self.key_pressed():
-            self.high_score = self.database.check_if_top_ten(score, level)
+            self.high_score = self.database.check_if_top_ten(score, LEVEL)
             self.win_screen = False
 
             if not self.high_score:

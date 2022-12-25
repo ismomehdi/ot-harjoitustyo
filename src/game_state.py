@@ -4,7 +4,7 @@ from build_world import BuildWorld
 from menus.main_menu import MainMenu
 from menus.pause_menu import PauseMenu
 from services.finish_screen import FinishScreen
-from level import level_map, level
+from level import level_map, LEVEL
 from config.display import display, display_surface
 from config.general import BG_COLOR
 
@@ -73,7 +73,7 @@ class GameState:
         elif self._finish.high_score:
             self._finish.draw_enter_name_screen()
         elif self._finish.high_scores_screen:
-            self._finish.draw_high_score_screen(level)
+            self._finish.draw_high_score_screen(LEVEL)
         else:
             self._pause.state['restart'] = True
             return
@@ -115,7 +115,7 @@ class GameState:
         _restart = self._pause.state['restart']
         _pause = self._pause.state['on_pause']
         _main_menu = self._menu.state['main_menu']
-        _reached_goal = self._world._reached_goal
+        _reached_goal = self._world.reached_goal
         _player = self._world.player
 
         if _restart:

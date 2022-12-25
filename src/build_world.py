@@ -22,7 +22,7 @@ class BuildWorld:
         self.create_sprite_groups()
         self.visible_sprites = Camera(display_surface)
 
-        self._reached_goal = False
+        self.reached_goal = False
         self._level_map = level_map
         self.setup_world()
 
@@ -77,7 +77,7 @@ class BuildWorld:
         if _player_x >= _goal_x - 100:
             self.player.reached_goal = True
 
-        self._reached_goal = self.player.reached_goal
+        self.reached_goal = self.player.reached_goal
 
     def run_world(self):
         """Runs the world by updating the sprites and drawing the visible sprites."""

@@ -68,10 +68,10 @@ class AnimateCharacter:
 
     def animate(self, direction, collisions, invincible=False, dead=False):
         """Animates the character.
-        
+
         Args:
             direction: A direction vector.
-            
+
             collisions: A Collisions object used by the get_status method.
 
             invincible: A boolean representing if the player is invincible used

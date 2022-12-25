@@ -7,8 +7,8 @@ from config.general import TILE_SIZE
 
 maps = import_maps()
 
-level = 1
-level_map = maps[str(level)]
+LEVEL = 1
+level_map = maps[str(LEVEL)]
 
 LEVEL_X = len(level_map[0]) * TILE_SIZE
 LEVEL_Y = len(level_map) * TILE_SIZE

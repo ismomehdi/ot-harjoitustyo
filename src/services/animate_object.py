@@ -1,9 +1,10 @@
 from services.import_images import import_folder
 
+
 class AnimateObject:
     def __init__(self, path):
         """The AnimateObject class is used to animate sprites.
-        
+
         Args:
             path: The path to the folder containing the animation frames."""
         self.frame_index = 0
