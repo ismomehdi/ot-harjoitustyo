@@ -1,6 +1,6 @@
 import pygame
 from db.high_score_repository import HighScoreRepository
-from services.text import Text
+from ui.text import Text
 from level import LEVEL
 
 

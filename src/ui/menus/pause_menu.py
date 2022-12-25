@@ -2,7 +2,7 @@ import pygame
 from config.display import display
 from config.paths import PAUSE_MENU_IMAGES_PATH
 from services.import_images import import_folder
-from menus.menu_init import MenuInit
+from ui.menus.menu_init import MenuInit
 
 
 class PauseMenu(MenuInit):

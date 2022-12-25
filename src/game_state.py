@@ -1,9 +1,9 @@
 import sys
 import pygame
 from build_world import BuildWorld
-from menus.main_menu import MainMenu
-from menus.pause_menu import PauseMenu
-from services.finish_screen import FinishScreen
+from ui.menus.main_menu import MainMenu
+from ui.menus.pause_menu import PauseMenu
+from ui.finish_screen import FinishScreen
 from level import level_map, LEVEL
 from config.display import display, display_surface
 from config.general import BG_COLOR
