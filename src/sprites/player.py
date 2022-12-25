@@ -13,8 +13,8 @@ class Player(pygame.sprite.Sprite):
         """Player class is used to create the player sprite.
 
         Attributes:
-            position: The position of the player.
-            groups: The groups the player sprite belongs to.
+            position: Tuple containing the x and y position of the player.
+            groups: List containing the sprite groups the player belongs to.
             collision_sprites: The collision sprites are used to check for collisions.
             coin_sprites: The coin sprites are used to check for collisions.
             enemy_sprites: The enemy sprites are used to check for collisions.
@@ -31,7 +31,7 @@ class Player(pygame.sprite.Sprite):
         self.get_player_constants()
 
         self.collisions = Collisions(
-            collision_sprites, self.direction, self.rect, self.gravity)
+            collision_sprites, self.direction, self.rect, self._gravity)
         self.coin_sprites = coin_sprites
         self.enemy_sprites = enemy_sprites
 
@@ -42,11 +42,12 @@ class Player(pygame.sprite.Sprite):
         self.reached_goal = False
 
     def get_player_constants(self):
-        self.speed = PLAYER_SPEED
-        self.gravity = PLAYER_GRAVITY
-        self.jump_speed = PLAYER_JUMP_SPEED
-        self.player_health = PLAYER_HEALTH
-        self.grace_period = PLAYER_GRACE_PERIOD
+        """Sets the player constants."""
+        self._speed = PLAYER_SPEED
+        self._gravity = PLAYER_GRAVITY
+        self._jump_speed = PLAYER_JUMP_SPEED
+        self._player_health = PLAYER_HEALTH
+        self._grace_period = PLAYER_GRACE_PERIOD
 
     def decrease_health(self):
         """Decreases the player health by 1.
@@ -57,11 +58,11 @@ class Player(pygame.sprite.Sprite):
         If the player health is 1 and this method is called, the game is over
         (unless the player is 'invincible').
         """
-        if self.player_health == 1 and not self.invincible:
+        if self._player_health == 1 and not self.invincible:
             self.dead = True
             self.rect = self.image.get_rect(bottomleft=self.rect.bottomleft)
         elif not self.invincible:
-            self.player_health -= 1
+            self._player_health -= 1
             self.invincible = True
             self.hurt_time = pygame.time.get_ticks()
 
@@ -69,15 +70,20 @@ class Player(pygame.sprite.Sprite):
         """Sets the self.invincible attribute to False after the grace period.
         """
         if self.invincible:
-            if pygame.time.get_ticks() - self.hurt_time >= self.grace_period:
+            if pygame.time.get_ticks() - self.hurt_time >= self._grace_period:
                 self.invincible = False
 
-    def get_points(self):
-        self.score = self.collisions.player_points
+    def get_score(self):
+        """Gets the player score from the collisions class.
+
+        Returns:
+            integer: The player score.
+        """
+        self.score = self.collisions.player_score
         return self.score
 
     def update(self):
-        """Updates the player sprite.
+        """Updates the player sprite and the player score.
         """
         if self.reached_goal:
             self.direction.x = 0
@@ -85,11 +91,11 @@ class Player(pygame.sprite.Sprite):
         elif not self.dead and not self.reached_goal:
             player_input(
                 self.direction,
-                self.jump_speed,
+                self._jump_speed,
                 self.collisions.on_ground,
                 pygame.key.get_pressed())
 
-            move_player(self.rect, self.direction, self.speed)
+            move_player(self.rect, self.direction, self._speed)
 
         self.collisions.apply_horizontal_collisions()
         self.collisions.apply_gravity()
@@ -103,4 +109,4 @@ class Player(pygame.sprite.Sprite):
         self.image = self.player.animate(
             self.direction, self.collisions, self.invincible, self.dead)
 
-        self.score = self.get_points()
+        self.score = self.get_score()

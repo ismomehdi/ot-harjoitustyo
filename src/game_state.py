@@ -11,14 +11,16 @@ from config.general import BG_COLOR
 
 class GameState:
     def __init__(self):
-        self.clock = pygame.time.Clock()
-        self.world = BuildWorld(level_map, display_surface)
-        self.menu = MainMenu()
-        self.pause = PauseMenu()
-        self.finish = FinishScreen()
+        """The GameState class is used to control different game states."""
+        self._clock = pygame.time.Clock()
+        self._world = BuildWorld(level_map, display_surface)
+        self._menu = MainMenu()
+        self._pause = PauseMenu()
+        self._finish = FinishScreen()
 
     def handle_user_input(self):
-        score = self.world.player.score
+        """Handles the user keyboard input."""
+        _score = self._world.player.score
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -26,66 +28,112 @@ class GameState:
                 sys.exit()
 
             if event.type == pygame.KEYDOWN:
+                _main_menu = self._menu.state['main_menu']
+                if event.key == pygame.K_ESCAPE and not _main_menu:
+                    self._pause.state['on_pause'] = True
 
-                main_menu = self.menu.state['main_menu']
-                if event.key == pygame.K_ESCAPE and not main_menu:
-                    self.pause.state['on_pause'] = True
+                if self._finish.high_score:
+                    self.handle_high_score_input(event, _score)
 
-                if self.finish.high_score:
-                    if event.key == pygame.K_BACKSPACE:
-                        self.finish.user_input = self.finish.user_input[:-1]
+    def handle_high_score_input(self, event, score):
+        """Handles the user keyboard input when the high score screen is active.
 
-                    elif len(self.finish.user_input) < 10:
-                        self.finish.user_input += event.unicode
+        Args:
+            event: The pygame.event is used to determine the active keys.
+            score: The score integer determines the score of the player.
+        """
+        if event.key == pygame.K_BACKSPACE:
+            self._finish.user_input = self._finish.user_input[:-1]
 
-                    if event.key == pygame.K_RETURN:
-                        if self.finish.user_input == '':
-                            self.finish.user_input = 'Player'
+        elif len(self._finish.user_input) < 10:
+            self._finish.user_input += event.unicode
 
-                        self.finish.enter_name(score)
-                        self.finish.high_score = False
-                        self.finish.high_scores_screen = True
+        if event.key == pygame.K_RETURN:
+            if self._finish.user_input == '':
+                self._finish.user_input = 'Player'
+
+            self._finish.enter_name(score)
+            self._finish.high_score = False
+            self._finish.high_scores_screen = True
+
+    def restart(self):
+        """Restarts the game."""
+        self._world = BuildWorld(level_map, display_surface)
+        self._menu = MainMenu()
+        self._pause = PauseMenu()
+        self._finish = FinishScreen()
+
+    def goal(self):
+        """Organizes the finish screen."""
+        display.fill(BG_COLOR)
+        _score = self._world.player.score
+
+        if self._finish.win_screen:
+            self._finish.draw_win_screen(_score)
+        elif self._finish.high_score:
+            self._finish.draw_enter_name_screen()
+        elif self._finish.high_scores_screen:
+            self._finish.draw_high_score_screen()
+        else:
+            self._pause.state['restart'] = True
+            return
+
+        self._world.run_world()
+        pygame.display.update()
+
+    def game_over(self):
+        """Organizes the game over screen."""
+        display.fill(BG_COLOR)
+
+        if self._finish.game_over_screen:
+            self._finish.draw_game_over_screen()
+        else:
+            self._pause.state['restart'] = True
+            return
+
+        self._world.run_world()
+        pygame.display.update()
+
+    def pause(self):
+        """Organizes the pause menu."""
+        self._pause.run_menu()
+        pygame.display.update()
+
+    def main_menu(self):
+        """Organizes the main menu."""
+        self._menu.run_menu()
+        pygame.display.update()
+
+    def play(self):
+        """Starts the game."""
+        display.fill(BG_COLOR)
+        self._world.run_world()
+        pygame.display.update()
 
     def run(self):
-        restart = self.pause.state['restart']
-        pause = self.pause.state['on_pause']
-        main_menu = self.menu.state['main_menu']
-        reached_goal = self.world.reached_goal
-        score = self.world.player.score
+        """Runs the game based on the current game state."""
+        _restart = self._pause.state['restart']
+        _pause = self._pause.state['on_pause']
+        _main_menu = self._menu.state['main_menu']
+        _reached_goal = self._world._reached_goal
+        _player = self._world.player
 
-        if restart:
-            self.world = BuildWorld(level_map, display_surface)
-            self.menu = MainMenu()
-            self.pause = PauseMenu()
-            self.finish = FinishScreen()
+        if _restart:
+            self.restart()
 
-        elif pause:
-            self.pause.run_menu()
-            pygame.display.update()
+        elif _pause:
+            self.pause()
 
-        elif main_menu:
-            self.menu.run_menu()
-            pygame.display.update()
+        elif _main_menu:
+            self.main_menu()
 
-        elif reached_goal:
-            display.fill(BG_COLOR)
+        elif _reached_goal:
+            self.goal()
 
-            if self.finish.win_screen:
-                self.finish.draw_win_screen(score)
-            elif self.finish.high_score:
-                self.finish.draw_enter_name_screen()
-            elif self.finish.high_scores_screen:
-                self.finish.draw_high_scores()
-            else:
-                self.pause.state['restart'] = True
-                return
-
-            self.world.run_world()
-            pygame.display.update()
+        elif _player.dead:
+            self.game_over()
 
         else:
-            display.fill(BG_COLOR)
-            self.world.run_world()
-            pygame.display.update()
+            self.play()
 
-        self.clock.tick(60)
+        self._clock.tick(60)

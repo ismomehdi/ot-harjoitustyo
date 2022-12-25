@@ -4,6 +4,14 @@ import pygame
 
 
 def import_folder(path):
+    """Imports all images from a folder.
+
+    Args:
+        path: A string containing the path to the folder.
+
+    Returns:
+        list: A list containing all images from the folder.
+    """
     image_list = []
 
     for _, __, filenames in walk(path):

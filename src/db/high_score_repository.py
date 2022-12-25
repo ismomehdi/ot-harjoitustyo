@@ -11,15 +11,18 @@ class HighScoreRepository:
             return True
 
         self.delete_excess_rows()
-        lowest_high_score = 'SELECT score FROM high_scores WHERE level = :level ORDER BY score LIMIT 1'
+        lowest_high_score = 'SELECT score FROM high_scores \
+            WHERE level = :level ORDER BY score LIMIT 1'
         lowest_high_score = self.cursor.execute(
             lowest_high_score, {'level': level}).fetchone()
 
         if lowest_high_score is None:
             return True
-        
-        elif score > lowest_high_score['score']:
+
+        if score > lowest_high_score['score']:
             return True
+
+        return False
 
     def count_rows(self):
         self.cursor.execute('SELECT COUNT(*) FROM high_scores')
@@ -33,8 +36,8 @@ class HighScoreRepository:
             f'DELETE FROM high_scores WHERE id NOT IN ({high_scores})')
 
     def add(self, level, name, score):
-        self.cursor.execute('INSERT INTO high_scores (level, name, score) VALUES (:level, :name, :score)', {
-                            'level': level, 'name': name, 'score': score})
+        self.cursor.execute('INSERT INTO high_scores (level, name, score) \
+            VALUES (:level, :name, :score)', {'level': level, 'name': name, 'score': score})
 
         self.cursor.connection.commit()
 

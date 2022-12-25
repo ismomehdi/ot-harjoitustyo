@@ -14,6 +14,7 @@ class FinishScreen:
         self.center_pos_y = DISPLAY_HEIGHT / 2
         self.ready_to_exit = False
         self.win_screen = True
+        self.game_over_screen = True
         self.high_score = False
         self.high_scores_screen = False
         self.user_input = ''
@@ -26,6 +27,19 @@ class FinishScreen:
     def key_pressed(self):
         keys = pygame.key.get_pressed()
         return any(keys)
+
+    def draw_game_over_screen(self):
+        draw_text('GAME OVER', self.font, self.lower_text_size,
+                  self.color, (self.center_pos_x, self.center_pos_y - 70))
+        draw_text('Press any key to restart', self.font, self.upper_text_size - 30,
+                  self.color, (self.center_pos_x, self.center_pos_y - 20))
+
+        if self.keys_released():
+            self.ready_to_exit = True
+
+        if self.ready_to_exit and self.key_pressed():
+            self.ready_to_exit = False
+            self.game_over_screen = False
 
     def draw_win_screen(self, score):
         level = 1
@@ -60,22 +74,18 @@ class FinishScreen:
     def enter_name(self, score):
         self.database.add(1, self.user_input, score)
 
-    def draw_high_scores(self):
-        level = 1
-        high_scores = self.database.get_top_ten(level)
-        pos = 170
-        number = 1
-
+    def draw_high_score_titles(self, pos):
         draw_text('HIGH SCORES', 'src/assets/fonts/Broken Console Bold.ttf',
-                  60, '#735d78', (self.center_pos_x + 15, self.center_pos_y - pos - 60))
+                60, '#735d78', (self.center_pos_x + 15, self.center_pos_y - pos - 60))
 
         draw_text('#', self.font, 30, '#735d78',
-                  (self.center_pos_x - 205, self.center_pos_y - pos - 5))
+                (self.center_pos_x - 205, self.center_pos_y - pos - 5))
         draw_text('name', self.font, 30, '#735d78',
-                  (self.center_pos_x, self.center_pos_y - pos - 5))
+                (self.center_pos_x, self.center_pos_y - pos - 5))
         draw_text('score', self.font, 30, '#735d78',
-                  (self.center_pos_x + 195, self.center_pos_y - pos - 5))
+                (self.center_pos_x + 195, self.center_pos_y - pos - 5))
 
+    def draw_high_score_stats(self, high_scores, pos):
         for i in range(10):
             pos -= 30
 
@@ -89,14 +99,22 @@ class FinishScreen:
             number = i + 1
 
             draw_text(str(number), self.font, 30, self.color,
-                      (self.center_pos_x - 205, self.center_pos_y - pos))
+                    (self.center_pos_x - 205, self.center_pos_y - pos))
             draw_text(str(name), self.font, 30, self.color,
-                      (self.center_pos_x, self.center_pos_y - pos))
+                    (self.center_pos_x, self.center_pos_y - pos))
             draw_text(str(score), self.font, 30, self.color,
-                      (self.center_pos_x + 195, self.center_pos_y - pos))
+                    (self.center_pos_x + 195, self.center_pos_y - pos))
 
         draw_text('press any key to proceed', self.font, 25, '#735d78',
-                  (self.center_pos_x + 5, self.center_pos_y - pos + 40))
+            (self.center_pos_x + 5, self.center_pos_y - pos + 40))
+
+    def draw_high_score_screen(self):
+        level = 1
+        high_scores = self.database.get_top_ten(level)
+        pos = 170
+
+        self.draw_high_score_titles(pos)
+        self.draw_high_score_stats(high_scores, pos)
 
         if self.keys_released():
             self.ready_to_exit = True
