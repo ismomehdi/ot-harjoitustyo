@@ -10,7 +10,11 @@ class Text:
 
     @classmethod
     def score(cls, score):
-        """Draws the score on the screen."""
+        """Draws the score on the screen.
+        
+        Args:
+            score: The score integer determines the score of the player.
+        """
 
         draw_text(f'SCORE: {score:04}', cls.font,
                   ts.SCORE_SIZE, cls.color_1, ts.SCORE_POSITION)

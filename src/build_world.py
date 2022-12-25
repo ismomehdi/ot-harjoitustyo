@@ -14,7 +14,7 @@ class BuildWorld:
     def __init__(self, level_map, display_surface):
         """The World class is used to set up the level and the sprites.
 
-        Attributes:
+        Args:
             level_map: The level map contains the layout of the level.
             display_surface: The display surface is used to render the sprites.
         """
