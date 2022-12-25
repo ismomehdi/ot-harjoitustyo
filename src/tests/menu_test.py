@@ -1,8 +1,8 @@
 import unittest
 import pygame
-from menus.main_menu import MainMenu
-from menus.pause_menu import PauseMenu
-from menus.menu_init import MenuInit
+from ui.menus.main_menu import MainMenu
+from ui.menus.pause_menu import PauseMenu
+from ui.menus.menu_init import MenuInit
 
 class TestMenus(unittest.TestCase):
     def setUp(self):
