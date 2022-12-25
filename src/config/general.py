@@ -1,5 +1,3 @@
-import os
-
 # Background color
 BG_COLOR = '#E8F8FF'
 

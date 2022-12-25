@@ -6,7 +6,7 @@ from sprites.coin import Coin
 from sprites.enemy import Enemy
 from sprites.goal import Goal
 from services.camera import Camera
-from text.display_text import DisplayText
+from text.text import Text
 from config.general import TILE_SIZE, ENEMY_SIZE_OFFSET
 
 
@@ -24,7 +24,6 @@ class BuildWorld:
 
         self._reached_goal = False
         self._level_map = level_map
-        self.draw = DisplayText()
         self.setup_world()
 
     def create_sprite_groups(self):
@@ -84,5 +83,5 @@ class BuildWorld:
         """Runs the world by updating the sprites and drawing the visible sprites."""
         self.active_sprites.update()
         self.visible_sprites.camera_draw(self.player)
-        self.draw.score(self.player.score)
+        Text.score(self.player.score)
         self.check_if_reached_goal()

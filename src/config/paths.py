@@ -21,3 +21,6 @@ GOAL_IMAGES_PATH = os.getenv('GOAL_IMAGES_PATH') or 'src/assets/images/goal/'
 # Menu images
 PAUSE_MENU_IMAGES_PATH = os.getenv('PAUSE_MENU_IMAGES_PATH') or 'src/assets/images/menu/pause_menu/'
 MAIN_MENU_IMAGES_PATH = os.getenv('MAIN_MENU_IMAGES_PATH') or 'src/assets/images/menu/main_menu/'
+
+# Fonts
+BROKEN_CONSOLE_FONT = os.getenv('SCORE_FONT') or 'src/assets/fonts/Broken Console Bold.ttf'

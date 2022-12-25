@@ -16,7 +16,7 @@ def import_maps():
     f = Goal
 
     Returns:
-        dictionary: Dictionary containing the level maps (keys: level_1, level_2, etc).
+        dictionary: Dictionary containing the level maps (keys: 1, 2, 3 etc).
     """
     maps = {}
 
