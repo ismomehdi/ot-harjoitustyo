@@ -16,6 +16,8 @@
 
 [Manual](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/manual.md)
 
+[Tests](https://github.com/ismomehdi/ot-harjoitustyo/blob/main/documentation/tests.md)
+
 ## Installation
 
 Install dependencies using the following command:
