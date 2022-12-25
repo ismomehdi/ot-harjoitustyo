@@ -27,4 +27,10 @@
 - Added main menu and a pause menu.
 - Refactored code.
 
+## Week 7
+
+- Finish up the game.
+- Add docstring.
+- Add database and high scores.
+
 
