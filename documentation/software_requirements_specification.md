@@ -20,5 +20,12 @@ A single user with an option to type in name for the High Scores list.
 - [x] There's a game menu.
 - [x] Platforms above the ground.
 
+## Further development ideas
+
+- Make the level more exciting by adding more graphics and obstacles etc.
+- Create the options menu state.
+- Create a level selector and more levels.
+- Add sounds.
+
 
 
