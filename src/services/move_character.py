@@ -1,4 +1,4 @@
-from level import level_rect
+from services.level import level_rect
 
 
 def move_player(rect, direction, speed):

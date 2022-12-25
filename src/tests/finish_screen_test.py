@@ -1,6 +1,6 @@
 import unittest
 import pygame
-from services.finish_screen import FinishScreen
+from ui.finish_screen import FinishScreen
 
 class FinishScreenTest(unittest.TestCase):
     def setUp(self):

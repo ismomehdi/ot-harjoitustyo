@@ -1,7 +1,7 @@
 import pygame
 from db.high_score_repository import HighScoreRepository
 from ui.text import Text
-from level import LEVEL
+from services.level import LEVEL
 
 
 class FinishScreen:
