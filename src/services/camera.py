@@ -40,12 +40,23 @@ class Camera(pygame.sprite.Group):
         """Draws the visible sprites on the display surface so that their position is
         manipulated by the offset value.
 
+        1. Changes the camera rectangle coordinates if the player gets close to the 
+        camera 'borders'. So in other words, moves the camera.
+
+        2. Ensures the camera moves left only if the player is not in the starting 
+        position (edge of the world).
+
+        3. The offset vector calculates the distance from the camera borders to the 
+        surface borders.
+
+        4. The visible sprites are drawn on the surface so that their position is 
+        manipulated by the offset value.
+
         Args:
             player: The player sprite.
         """
 
-        # This changes the camera rectangle coordinates if the player gets
-        # close to the camera 'borders'. In other words, this moves the camera.
+        # 1.
         if player.rect.right > self.camera_rect.right:
             self.camera_rect.right = player.rect.right
         if player.rect.top < self.camera_rect.top:
@@ -53,20 +64,17 @@ class Camera(pygame.sprite.Group):
         if player.rect.bottom > self.camera_rect.bottom:
             self.camera_rect.bottom = player.rect.bottom
 
-        # This ensures the camera moves left only if the player is not in
-        # the starting position (edge of the world)
+        # 2.
         if self.camera_rect.left > self.camera['left']:
             if player.rect.left < self.camera_rect.left:
                 self.camera_rect.left = player.rect.left
 
-        # This vector calculates the distance from the camera
-        # borders to the surface borders
+        # 3.
         self.offset = pygame.math.Vector2(
             self.camera_rect.left - self.camera['left'],
             self.camera_rect.top - self.camera['top'])
 
-        # This draws the visible sprites on the surface so that their
-        # position is manipulated by the offset value
+        # 4.
         for sprite in self.sprites():
             offset_position = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_position)

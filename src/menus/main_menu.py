@@ -7,6 +7,8 @@ from menus.menu_init import MenuInit
 
 class MainMenu(MenuInit):
     def __init__(self):
+        """The MainMenu class is used to run the main menu.
+        """
         super().__init__()
         self.options = ['new_game', 'options', 'quit']
         self.option = self.options[self.cursor]
@@ -19,6 +21,8 @@ class MainMenu(MenuInit):
         self.player_rect = self.player_image.get_rect(bottomleft=(144, 720))
 
     def run_menu(self):
+        """Runs the main menu.
+        """
         self.process_player_input(pygame.key.get_pressed())
         self.image = self.images[self.cursor]
         display.blit(self.image, (0, 0))

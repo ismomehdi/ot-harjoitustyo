@@ -4,6 +4,12 @@ from services.import_images import import_folder
 
 class AnimateCharacter:
     def __init__(self, path):
+        """The AnimateCharacter class is used to animate the characters
+        (e.g. the player and the enemies).
+
+        Args:
+            path: The path to the folder containing the animation frames.
+        """
         self.import_assets(path)
 
         self.moving_forward = True
@@ -15,6 +21,12 @@ class AnimateCharacter:
         self.image = self.animations['idle'][self.frame_index]
 
     def import_assets(self, path):
+        """Imports the animation frames from the given path using the
+        import_folder function.
+
+        Args:
+            path: The path to the folder containing the animation frames.
+        """
         self.animations = {'idle': [], 'run': [],
                            'jump': [], 'fall': [], 'hurt': [], 'death': []}
 
@@ -23,14 +35,25 @@ class AnimateCharacter:
             self.animations[animation] = import_folder(full_path)
 
     def get_status(self, direction, collisions, invincible, dead):
+        """Determines the player's status for the animation.
 
-        # Check which way the player is moving
+        Args:
+            direction: A direction vector.
+
+            collisions: A Collisions object used to determine if the character
+                is on the ground.
+
+            invincible: A boolean representing if the player is invincible because
+                of the hurt grace period.
+
+            dead: A boolean representing if the character is dead.
+        """
+
         if direction.x == 1:
             self.moving_forward = True
         elif direction.x == -1:
             self.moving_forward = False
 
-        # Determine the player's status
         if invincible:
             self.status = 'hurt'
         elif dead:
@@ -44,6 +67,20 @@ class AnimateCharacter:
             self.status = 'idle'
 
     def animate(self, direction, collisions, invincible=False, dead=False):
+        """Animates the character.
+        
+        Args:
+            direction: A direction vector.
+            
+            collisions: A Collisions object used by the get_status method.
+
+            invincible: A boolean representing if the player is invincible used
+                by the get_status method.
+
+            dead: A boolean representing if the character is dead used by the
+                get_status method.
+            """
+
         self.get_status(direction, collisions, invincible, dead)
         animation_frames = self.animations[self.status]
 
